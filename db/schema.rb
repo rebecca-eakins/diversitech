@@ -11,7 +11,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406183406) do
+ActiveRecord::Schema.define(version: 20150406210700) do
+
+  create_table "institutions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_topics", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "post_topics", ["post_id"], name: "index_post_topics_on_post_id"
+  add_index "post_topics", ["topic_id"], name: "index_post_topics_on_topic_id"
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "resource_topics", force: :cascade do |t|
+    t.integer  "resource_id"
+    t.integer  "topic_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "resource_topics", ["resource_id"], name: "index_resource_topics_on_resource_id"
+  add_index "resource_topics", ["topic_id"], name: "index_resource_topics_on_topic_id"
+
+  create_table "resources", force: :cascade do |t|
+    t.string   "description"
+    t.string   "title"
+    t.string   "resource_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "url"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_institutions", force: :cascade do |t|
+    t.string   "institution_type"
+    t.integer  "user_id"
+    t.integer  "institution_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "user_institutions", ["institution_id"], name: "index_user_institutions_on_institution_id"
+  add_index "user_institutions", ["user_id"], name: "index_user_institutions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +89,8 @@ ActiveRecord::Schema.define(version: 20150406183406) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
