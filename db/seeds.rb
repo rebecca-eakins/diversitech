@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create([
-  {first_name: "Rebecca", last_name: "Shapkins", email: "reb@mailinator.com", password: "12345678", password_confirmation: "12345678"}
+  {name: "Rebecca Shapkins", email: "reb@mailinator.com", password: "12345678", password_confirmation: "12345678"}
 ])
 
 Institution.create({name: "The Flatiron School"})

@@ -1,1 +1,5 @@
-<h1>I want to help diversify tech.</h1>
+<% if !user_signed_in? %>
+	<h1>I want to help diversify tech.</h1>
+<% else %>
+	<%= image_tag(current_user.image) %>
+<% end %>
