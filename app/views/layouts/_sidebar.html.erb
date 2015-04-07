@@ -1,0 +1,30 @@
+<div class="sidebar" id="sidebar">
+  <div>
+    <a href="/">Diversitech Logo</a>
+    <hr>
+    <p><%= image_tag(current_user.image, :id => 'profile_pic') %></p>
+    <h2>Welcome, <%= current_user.first_name %>!</h2>
+  </div>
+  <div class="user_info">
+    <h4>Education</h4>
+      <ul>
+        <% current_user.institutions.where('institution_type = "School"').each do |institution| %>
+          <li><%= institution.name %></li>
+        <% end %>
+      </ul>
+    <h4>Work History</h4>
+      <ul>
+        <% current_user.institutions.where('institution_type = "Work"').each do |institution| %>
+          <li><%= institution.name %></li>
+        <% end %>
+      </ul>
+    <h4><%= link_to "Settings", "/" %></h4>
+  </div>
+  <div class="footer">
+  <hr>
+    <div id="footer-links">
+      <a href="/">About</a> <span class="separator">&bull;</span>
+      <a href="http://www.github.com/diversitech" target="_blank">Fork Me on GitHub</a>
+    </div>
+  </div>
+</div>

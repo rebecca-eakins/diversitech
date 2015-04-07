@@ -1,0 +1,27 @@
+/*****************************************************************************/
+/*
+/* Sidebar and Content
+/*
+/*****************************************************************************/
+
+.sidebar {
+  float: left;
+  width: 25%;
+  padding-left: 6em;
+  padding-right: 2em;
+  border-right: 1px solid #e7e7e7;
+}
+
+#profile_pic {
+	width: 50px;
+	margin: 0 auto;
+  border-radius: 100%;
+}
+
+.sidebar > * {
+	text-align: center;
+}
+
+.user_info {
+	text-align: left;
+}
