@@ -1,5 +1,5 @@
 <% Goal.all.each do |goal| %>
-	<%= link_to goal.name, goal_posts_path(goal) %>
+	<%= link_to goal.name, goal_posts_path(goal), :class => "#{'current' if goal.id == params[:goal_id].to_i}" %>
 <% end %>
 
 <ul>

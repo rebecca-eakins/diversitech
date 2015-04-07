@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <div class="sidebar" id="sidebar">
   <div>
     <a href="/">Diversitech Logo</a>
@@ -6,6 +7,14 @@
     <h2>Welcome, <%= current_user.first_name %>!</h2>
   </div>
   <div class="user_info">
+  <h4>My Profile</h4>
+  <div class="goals">
+    <% Goal.all.each do |goal| %>
+    <!-- once user_goals is implemented, only the user's selected goals should appear here. -->
+      <%= link_to goal.name,  goal_path(goal) %>
+    <% end %>
+  </div>
+
     <h4>Education</h4>
       <ul>
         <% current_user.institutions.where('institution_type = "School"').each do |institution| %>
@@ -18,6 +27,7 @@
           <li><%= institution.name %></li>
         <% end %>
       </ul>
+
     <h4><%= link_to "Settings", "/" %></h4>
   </div>
   <div class="footer">
@@ -28,3 +38,4 @@
     </div>
   </div>
 </div>
+<% end %>

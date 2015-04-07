@@ -3,6 +3,17 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get '/[:user_id]' => 'profile#show' #has no authorization at all (right now), unless you want to specify that a user is LOGGED IN before they can send a message. (authentication, but not authorization.)
+
+  get '/[:user_id]/edit' => 'profile#edit' #this will require authorization so that the current user can only see the edit page for their user ID or slug.
+  
+  # will need to POST a profile PATCH page
+  #post/patch '/[:user_id]' => 'profile#update'
+  get '/my_profile/settings' => 'users#settings'
+
+  #should profile and settings be one and the same?
+
+
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
