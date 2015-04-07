@@ -44,6 +44,10 @@ group :test, :development do
   gem 'prybaby'
   gem 'guard-rspec', require: false
   gem 'thin'
+  gem 'rspec-rails' #=> RSpec is our test framework
+  gem 'factory_girl_rails' #=> FactoryGirl will be our factory in place of fixtures
+  gem 'database_cleaner' #=> cleans database before each test
+  gem 'faker' #=> produces random fake test data
 end
 
 group :production do
