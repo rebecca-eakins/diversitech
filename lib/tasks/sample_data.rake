@@ -7,14 +7,14 @@ namespace :db do
     make_resources
     make_posts
     associate_user_institution
-    assign_topics
+    tag_posts_with_topics
   end
 end
 
 def make_users
   100.times do |n|
     name = Faker::Name.name
-    email = "#{name}-#{n+1}@mailinator.com"
+    email = Faker::Internet.email
     password = "password123"
     User.create!(name: name, email: email, password: password, password_confirmation: password)
   end
@@ -32,7 +32,7 @@ def make_resources
   30.times do |r|
     title = Faker::App.name
     description = Faker::Hacker.say_something_smart
-    resource_type = resource_type.sample
+    resource_type = resource_types.sample
     url = Faker::Internet.domain_name
     r = Resource.create!(title: title, description: description, resource_type: resource_type, url: url)
     r.topics.push(Topic.all.sample)
@@ -42,7 +42,7 @@ end
 def make_posts
   5.times do 
     User.all.limit(6).each do |user|
-      user.posts.create!(contet: Faker::Lorem.sentence(3))
+      user.posts.create!(content: Faker::Lorem.sentence(3))
     end
   end
 end
@@ -58,13 +58,14 @@ def associate_user_institution
       institution_type: school_or_work,
       institution_id: inst_id,
       start_date: started_at,
-      stopped_at: stopped_at
+      end_date: stopped_at
       )
   end
 
   def tag_posts_with_topics
     Post.all.each do |post|
       post.topics.push(Topic.all.sample)
+      post.goal = Goal.all.sample
     end
   end
 end
