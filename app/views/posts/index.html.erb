@@ -1,0 +1,11 @@
+<% Goal.all.each do |goal| %>
+	<%= link_to goal.name, goal_posts_path(goal) %>
+<% end %>
+
+<ul>
+<% @goal.posts.each do |post| %>
+	<li><h4><%= link_to post.content, goal_post_path(@goal, post) %></h4>
+	<p>Posted by <%= User.find(post.user_id).name %></p>
+<% end %>
+
+</ul>

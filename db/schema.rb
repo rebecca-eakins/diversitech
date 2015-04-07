@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407153119) do
+ActiveRecord::Schema.define(version: 20150407200518) do
+
+  create_table "goals", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name"
@@ -34,8 +40,10 @@ ActiveRecord::Schema.define(version: 20150407153119) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "goal_id"
   end
 
+  add_index "posts", ["goal_id"], name: "index_posts_on_goal_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "resource_topics", force: :cascade do |t|
