@@ -65,7 +65,8 @@ def associate_user_institution
   def tag_posts_with_topics
     Post.all.each do |post|
       post.topics.push(Topic.all.sample)
-      post.goal = Goal.all.sample
+      post.goal_id = Goal.all.sample.id
+      post.save
     end
   end
 end
