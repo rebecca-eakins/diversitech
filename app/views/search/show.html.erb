@@ -1,0 +1,24 @@
+<% if @post_results %>
+
+	Found <%= @post_results.count %> matching posts
+
+	<ul>
+	<% @post_results.each do |post| %>
+		<li><%= link_to post.content, goal_post_path(post.goal, post) %></li>
+	<% end %>
+	</ul>
+
+<% end %>
+
+
+<% if @resource_results %>
+
+	Found <%= @resource_results.count %> matching resources
+
+	<ul>
+	<% @resource_results.each do |resource| %>
+		<li><%= link_to resource.title, resource %></li>
+	<% end %>
+	</ul>
+
+<% end %>
