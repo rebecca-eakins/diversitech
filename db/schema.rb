@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407200518) do
+ActiveRecord::Schema.define(version: 20150408211555) do
+
+  create_table "connections", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "target_id"
+    t.string   "connection_status"
+    t.boolean  "reach_out",         default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "connections", ["follower_id"], name: "index_connections_on_follower_id"
+  add_index "connections", ["target_id"], name: "index_connections_on_target_id"
 
   create_table "goals", force: :cascade do |t|
     t.string   "name"

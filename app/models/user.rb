@@ -12,6 +12,17 @@ class User < ActiveRecord::Base
   
   has_many :posts
 
+  # HAS MANY FOLLOWERS
+  has_many :followers, foreign_key: :target_id, class_name: "Connection"
+
+  # FOLLOWS MANY USERS
+  has_many :targets, foreign_key: :follower_id, class_name: "Connection"
+
+  attr_accessor :following, :followed_by
+
+
+  #CLASS METHODS
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -21,8 +32,58 @@ class User < ActiveRecord::Base
     end
   end
 
+  # INSTANCE METHODS
+
   def first_name
     self.name.split(" ").first
   end
-  
+
+  # NETWORK INSTANCE METHODS
+
+  def feed
+    Posts.from_users_followed_by(self)
+  end
+
+  def following?(target_id)
+    true if targets.find_by_target_id(target_id)
+  end
+
+  def follow!(target_id)
+    targets.find_by_target_id(target)
+    # THEN UPDATE STATUS TO CONFIRMED
+  end
+
+  def unfollow!(target)
+    targets.find_by_target_id(target)#.destroy
+    # THEN UPDATE STATUS TO CANCELLED
+  end
+
+  # NETWORK HELPERS
+
+  def following
+    id = self.id
+
+    following_query = <<-SQL
+      SELECT * FROM users u
+      WHERE u.id IN (SELECT target_id FROM
+      connections c WHERE c.follower_id = ?);
+    SQL
+
+    User.find_by_sql([following_query, id])
+  end
+
+  def followed_by
+    # TODO: sort out the naming here. Because of Active Record, 'followers' is a method we get from the follower_id column on the connections table. target.followers, though, returns a collection of *CONNECTIONS*, not a collection of USER objects. Naming this method, which returns USER objects, "followers" may be intuitive, but it results in namespace conflict. Buh? Renamed 'followed_by' for now to manage this collision.
+
+    id = self.id
+
+    following_query = <<-SQL
+      SELECT * FROM users u
+      WHERE u.id IN (SELECT follower_id FROM
+      connections c WHERE c.target_id = ?);
+    SQL
+
+    User.find_by_sql([following_query, id])
+  end
+
 end

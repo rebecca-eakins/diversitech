@@ -20,6 +20,11 @@ def make_users
   end
 end
 
+def make_connections
+  
+end
+
+
 def make_institutions
   25.times do |i|
     institution_name = Faker::Company.name
