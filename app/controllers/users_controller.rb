@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    #not sure exactly what this is going to do yet-> zip code
   end
 
   private

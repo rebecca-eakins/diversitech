@@ -1,8 +1,11 @@
 class UserInstitutionsController < ApplicationController
   def create
-    binding.pry
     @ui = UserInstitution.find_or_create_by(ui_params)
     redirect_to :back
+  end
+
+  def update
+    #STUB STUB STUB
   end
 
   def destroy
