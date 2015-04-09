@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
-  # resources :users, :only => [:show], as: :profile
+  resources :users, :only => [:show, :update, :edit]
   # resources :users, :controllers => { :profiles => "users/profiles" }
   # resources :'users/profiles'
-  get 'users/:id/profile' => 'users/profiles#show', as: :profile
-  patch 'users/:id/profile' => 'users/profiles#update'
-  get 'users/:id/profile/edit' => 'users/profiles#edit', as: :profile_edit
-  # post 'users/:id/user_institutions/create' => 'users/user_institutions#create', as: :create_ui
 
-  resources :users, :only => [] do
-    resources :user_institutions#, :only => [:create, :edit, :update]
-  end
+  resources :user_institutions, :only => [:create, :edit, :update, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

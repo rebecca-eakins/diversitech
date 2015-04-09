@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407200518) do
+ActiveRecord::Schema.define(version: 20150409173210) do
 
   create_table "goals", force: :cascade do |t|
     t.string   "name"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150407200518) do
     t.string   "provider"
     t.string   "uid"
     t.string   "image"
+    t.integer  "current_zip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

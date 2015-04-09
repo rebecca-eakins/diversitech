@@ -1,6 +1,13 @@
 class UserInstitutionsController < ApplicationController
   def create
+    binding.pry
     @ui = UserInstitution.find_or_create_by(ui_params)
+    redirect_to :back
+  end
+
+  def destroy
+    UserInstitution.find(params[:id]).destroy
+    redirect_to :back
   end
 
   private

@@ -1,0 +1,51 @@
+<h3><%= flash[:new_user] %></h3>
+
+<h3>User Information</h3>
+
+<%= form_for @user, :url => edit_user_path, :method => 'patch' do |f| %>
+  <%= f.label :name, "Display Name" %>
+  <%= f.text_field :name %>
+  <%= f.label :current_zip, "Current Zip Code" %>
+  <%= f.text_field :current_zip %>
+  <%= f.submit %>
+<% end %>
+
+<h4>Work and Education History</h4>
+
+
+<% @user.institutions.each do |institution| %>
+  <%= institution.name %>
+  <%= form_for UserInstitution.find_by(user_id: @user.id, institution_id: institution.id) do |ui_form| %>
+    <%= ui_form.text_field :institution_type %>
+    <%= ui_form.date_field :start_date %>
+    <%= ui_form.date_field :end_date %>
+    <%= ui_form.submit %>
+  <% end %>
+  <%= link_to "Delete", user_institution_path, :method => :delete %>
+<% end %>
+
+<h5>New Institution</h5>
+<%= form_for UserInstitution.new do |f| %>
+  <%= f.label :institution_id %>
+  <%= select_tag(:institution_id, options_for_select(@institutions_array), name: "user_institution[institution_id]") %>
+
+  <%= f.label :institution_type %>
+  <%= f.label :institution_type, "work" %>
+  <%= f.radio_button :institution_type, "work" %>
+  <%= f.label :institution_type, "school" %>
+  <%= f.radio_button :institution_type, "school" %>
+  
+  <%= f.label :start_date %>
+  <%= f.date_field :start_date %>
+  <%= f.label :end_date %>
+  <%= f.date_field :end_date %>
+  <%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.submit %>
+<% end %>
+
+<% if params[:new_user] %>
+  <%= link_to "Skip", root_path %>
+<% end %>
+
+<h3>User Settings</h3>
+<%= link_to "User Settings", edit_user_registration_path(@user) %>
