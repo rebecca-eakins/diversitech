@@ -1,7 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def github
-    # You need to implement the method below in your model (e.g. app/models/user.rb)
     @new_user = !User.user_exist?(request.env["omniauth.auth"])
     @user = User.from_omniauth(request.env["omniauth.auth"])
 

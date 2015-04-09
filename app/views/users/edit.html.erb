@@ -2,7 +2,7 @@
 
 <h3>User Information</h3>
 
-<%= form_for @user, :url => edit_user_path, :method => 'patch' do |f| %>
+<%= form_for @user, :url => user_path(@user) do |f| %>
   <%= f.label :name, "Display Name" %>
   <%= f.text_field :name %>
   <%= f.label :current_zip, "Current Zip Code" %>

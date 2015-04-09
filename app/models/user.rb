@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  validates :current_zip, length: { is: 5 }
+  validates :current_zip, length: { is: 5 }, :allow_blank => true
 
   has_many :user_institutions
   has_many :institutions, through: :user_institutions

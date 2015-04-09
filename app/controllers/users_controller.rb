@@ -9,7 +9,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    #specifically zip code
+    @user.current_zip = params[:user][:current_zip]
+    @user.name = params[:user][:name]
+    @user.save
+    redirect_to :back
   end
 
   private

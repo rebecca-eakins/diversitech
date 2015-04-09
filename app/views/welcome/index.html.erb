@@ -4,28 +4,24 @@
 
 	<h1>My Dashboard</h1>
 
-	<h2>Newsfeed</h2>
+	<h2>Network Activity</h2>
 		<p>[Placeholder] Ellen accepted your mentorship request at XX:XX on XX/XX</p>
 		<p>[Placeholder] Your connection Amanda posted a new resource filed under Career at XX:XX on XX/XX</p>
 		<p>[Placeholder] 23 people in your network have saved "How to be a good team member" to read for later</p>
 		<p>[Placeholder] Carly Smith invited you to Chicks on Rails meetup</p>
 
 	<h2><%= link_to "Trending Forum Discussions", goal_posts_path(Goal.first) %></h2> <%#= @current_user.primary_goal %>
+		<h3>All	|	Code	|	Career	|	Advocacy</h3>
+		<p>[placeholder] Feed</p>
 
 	<h2>Resources</h2>
 
 	<p></p>
 	<h4>Most clicked resources that may interest you:</h4>
 	<ul>
+		<li>[google analytics]</li>
 		<li>Resource 1</li>
 		<li>Resource 2</li>
-	</ul>
-
-	<h2>Network Activity</h2>
-
-	<ul>
-		<li>Recent Connection 1</li>
-		<li>Recent Connection 2</li>
 	</ul>
 
 <% end %>

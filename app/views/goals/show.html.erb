@@ -1,6 +1,6 @@
 <h1>Goal: <%= @goal.name %></h1>
 
-<h2><%= link_to "Forum", goal_posts_path(Goal.first) %></h2> <%#= @current_user.primary_goal %>
+<h2><%= link_to "Forum", goal_posts_path(@goal) %></h2> <%#= @current_user.primary_goal %>
 
 
 <h2>Resources</h2>
