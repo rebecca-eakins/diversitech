@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  # add validation on :current_zip to make sure it's a 5-digit integer
+  validates :current_zip, length: { is: 5 }
 
   has_many :user_institutions
   has_many :institutions, through: :user_institutions
