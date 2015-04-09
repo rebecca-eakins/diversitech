@@ -11,10 +11,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   
-end
-
 private
 
   def find_goal
     @goal = Goal.find(params[:goal_id])
   end
+end

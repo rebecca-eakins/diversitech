@@ -13,7 +13,7 @@ Goal.create([
 ])
 
 User.create([
-  {name: "Rebecca Shapkins", email: "reb@mailinator.com", password: "12345678", password_confirmation: "12345678"}
+  {name: "Rebecca Shapkins", email: "reb@mailinator.com", password: "12345678", password_confirmation: "12345678", current_zip: '11216'}
 ])
 
 Institution.create({name: "The Flatiron School"})
@@ -42,6 +42,14 @@ Post.find(1).topics << git
 Topic.find(1).resources.create([
   {description: "GDI is a communit that offers courses for women and girls interested in learning to code.", url: "www.girldevelopit.com", title: "Girl Develop It!", resource_type: "course"}
   ])
+
+Connection.create([
+  {follower_id: 1, target_id: 100, connection_status: "confirmed"},
+  {follower_id: 1, target_id: 99, connection_status: "confirmed"},
+  {follower_id: 1, target_id: 98, connection_status: "confirmed"},
+  {follower_id: 100, target_id: 1, connection_status: "confirmed"},
+  {follower_id: 100, target_id: 99, connection_status: "confirmed"}
+])
 
 
 

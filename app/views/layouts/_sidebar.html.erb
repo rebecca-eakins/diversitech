@@ -24,8 +24,11 @@
   <div class="footer">
   <hr>
     <div id="footer-links">
-      <a href="/">About</a> <span class="separator">&bull;</span>
-      <a href="http://www.github.com/diversitech" target="_blank">Fork Me on GitHub</a>
+      <%= link_to "About", "#", target: "_blank" %>
+      <span class="separator">&bull;</span>
+      <%= link_to "Fork Me on Github", "http://www.github.com/diversitech", target: "_blank" %>
+      <span class="separator">&bull;</span>
+      <%= link_to "Made with <3 at the Flatiron School", "http://flatironschool.com/", target: "_blank" %>
     </div>
   </div>
 </div>

@@ -13,6 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20150409173210) do
 
+  create_table "connections", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "target_id"
+    t.string   "connection_status"
+    t.boolean  "reach_out",         default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "connections", ["follower_id"], name: "index_connections_on_follower_id"
+  add_index "connections", ["target_id"], name: "index_connections_on_target_id"
+
   create_table "goals", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -101,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150409173210) do
     t.string   "provider"
     t.string   "uid"
     t.string   "image"
-    t.integer  "current_zip"
+    t.string   "current_zip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
