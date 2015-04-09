@@ -3,6 +3,7 @@ namespace :db do
   task populate: :environment do
     Rake::Task['db:reset'].invoke
     make_users
+    make_connections
     make_institutions
     make_resources
     make_posts
@@ -21,7 +22,18 @@ def make_users
 end
 
 def make_connections
+  users = User.all
+  followers = users[10..50]
+  targets = users[1..15]
   
+  users.each do |user|
+    user.follow!(targets.sample)
+  end
+
+  followers.each do |user|
+    user.follow!(users.sample)
+  end
+
 end
 
 
