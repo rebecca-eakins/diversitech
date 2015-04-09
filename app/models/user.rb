@@ -44,18 +44,23 @@ class User < ActiveRecord::Base
     Posts.from_users_followed_by(self)
   end
 
-  def following?(target_id)
-    true if targets.find_by_target_id(target_id)
+  def following?(target)
+    !!targets.find_by(target_id: target, connection_status: 'confirmed')
   end
 
-  def follow!(target_id)
-    targets.find_by_target_id(target)
-    # THEN UPDATE STATUS TO CONFIRMED
+  def follow!(target)
+    follower = self
+    
+    if Connection.found?(follower, target)
+      Connection.find_by(follower_id: follower, target_id: target).update(connection_status: "confirmed")
+    else
+      Connection.create_new_follow(follower, target)
+    end
   end
 
   def unfollow!(target)
-    targets.find_by_target_id(target)#.destroy
-    # THEN UPDATE STATUS TO CANCELLED
+    follower = self
+    Connection.find_by(follower_id: follower.id, target_id: target.id).update_column(:connection_status, "unfollowed")
   end
 
   # NETWORK HELPERS
@@ -66,7 +71,8 @@ class User < ActiveRecord::Base
     following_query = <<-SQL
       SELECT * FROM users u
       WHERE u.id IN (SELECT target_id FROM
-      connections c WHERE c.follower_id = ?);
+      connections c WHERE c.follower_id = ?
+      AND c.connection_status = 'confirmed');
     SQL
 
     User.find_by_sql([following_query, id])
@@ -80,7 +86,8 @@ class User < ActiveRecord::Base
     following_query = <<-SQL
       SELECT * FROM users u
       WHERE u.id IN (SELECT follower_id FROM
-      connections c WHERE c.target_id = ?);
+      connections c WHERE c.target_id = ?
+      AND c.connection_status = 'confirmed');
     SQL
 
     User.find_by_sql([following_query, id])

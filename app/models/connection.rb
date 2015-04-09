@@ -8,6 +8,13 @@ class Connection < ActiveRecord::Base
   validates_uniqueness_of :follower_id, :scope => :target_id
   validate :cannot_follow_self
 
+  def self.found?(follower, target)
+    !!Connection.find_by(follower_id: follower, target_id: target)
+  end
+
+  def self.create_new_follow(follower, target)
+    Connection.create(follower_id: follower.id, target_id: target.id, connection_status: 'confirmed')
+  end
 
   private
   
