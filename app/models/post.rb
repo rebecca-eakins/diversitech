@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   validates :content, presence: true
 
   default_scope {order('posts.created_at DESC')}
-  scope :from_users_followed_by, lambda { |user| followed_by(user)}
+  scope :from_users_followed_by, lambda { |user| followed_by(user)} # DOESN'T QUIIIITE WORK YET
 
   private
     def self.followed_by(user)

@@ -18,8 +18,6 @@ class User < ActiveRecord::Base
   # FOLLOWS MANY USERS
   has_many :targets, foreign_key: :follower_id, class_name: "Connection"
 
-  attr_accessor :following, :followed_by
-
 
   #CLASS METHODS
 
@@ -41,7 +39,7 @@ class User < ActiveRecord::Base
   # NETWORK INSTANCE METHODS
 
   def feed
-    Posts.from_users_followed_by(self)
+    Post.from_users_followed_by(self)
   end
 
   def following?(target)
