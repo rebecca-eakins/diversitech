@@ -36,7 +36,6 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'sqlite3'
@@ -44,10 +43,6 @@ group :test, :development do
   gem 'prybaby'
   gem 'guard-rspec', require: false
   gem 'thin'
-  gem 'rspec-rails' #=> RSpec is our test framework
-  gem 'factory_girl_rails' #=> FactoryGirl will be our factory in place of fixtures
-  gem 'database_cleaner' #=> cleans database before each test
-  gem 'faker' #=> produces random fake test data
 end
 
 group :production do
@@ -56,6 +51,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'factory_girl_rails'
+gem 'faker' #=> produces random fake test data
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
 gem 'figaro'
