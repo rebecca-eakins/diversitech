@@ -1,16 +1,29 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  
+  # resources :users, :only => [:show], as: :profile
+  # resources :users, :controllers => { :profiles => "users/profiles" }
+  # resources :'users/profiles'
+  get 'users/:id/profile' => 'users/profiles#show', as: :profile
+  patch 'users/:id/profile' => 'users/profiles#update'
+  get 'users/:id/profile/edit' => 'users/profiles#edit', as: :profile_edit
+  # post 'users/:id/user_institutions/create' => 'users/user_institutions#create', as: :create_ui
+
+  resources :users, :only => [] do
+    resources :user_institutions#, :only => [:create, :edit, :update]
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'search_results' => 'search#show'
   
-  get '/[:user_id]' => 'profile#show' #has no authorization at all (right now), unless you want to specify that a user is LOGGED IN before they can send a message. (authentication, but not authorization.)
+  # get '/[:user_id]' => 'profile#show' #has no authorization at all (right now), unless you want to specify that a user is LOGGED IN before they can send a message. (authentication, but not authorization.)
 
-  get '/[:user_id]/edit' => 'profile#edit' #this will require authorization so that the current user can only see the edit page for their user ID or slug.
+  # get '/[:user_id]/edit' => 'profile#edit' #this will require authorization so that the current user can only see the edit page for their user ID or slug.
   
-  # will need to POST a profile PATCH page
-  #post/patch '/[:user_id]' => 'profile#update'
-  get '/my_profile/settings' => 'users#settings'
+  # # will need to POST a profile PATCH page
+  # #post/patch '/[:user_id]' => 'profile#update'
+  # get '/my_profile/settings' => 'users#settings'
 
   #should profile and settings be one and the same?
 

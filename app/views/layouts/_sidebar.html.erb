@@ -6,30 +6,21 @@
     <p><%= image_tag(current_user.image, :id => 'profile_pic') %></p>
     <h2>Welcome, <%= current_user.first_name %>!</h2>
   </div>
+    
+    <h4>Quick Links:</h4>
+    <div class="goals">
+      <% Goal.all.each do |goal| %>
+      <!-- once user_goals is implemented, only the user's selected goals should appear here. -->
+        <%= link_to goal.name.capitalize,  goal_path(goal) %>
+      <% end %>
+    </div>
+    
+    <br><h5><%= link_to "My Profile", profile_path(current_user) %> &#8226 <%= link_to "Settings", "/" %></h5>
+
   <div class="user_info">
-  <h4>My Profile</h4>
-  <div class="goals">
-    <% Goal.all.each do |goal| %>
-    <!-- once user_goals is implemented, only the user's selected goals should appear here. -->
-      <%= link_to goal.name,  goal_path(goal) %>
-    <% end %>
+  <!-- this section is aligned left -->
   </div>
 
-    <h4>Education</h4>
-      <ul>
-        <% current_user.institutions.where('institution_type = "School"').each do |institution| %>
-          <li><%= institution.name %></li>
-        <% end %>
-      </ul>
-    <h4>Work History</h4>
-      <ul>
-        <% current_user.institutions.where('institution_type = "Work"').each do |institution| %>
-          <li><%= institution.name %></li>
-        <% end %>
-      </ul>
-
-    <h4><%= link_to "Settings", "/" %></h4>
-  </div>
   <div class="footer">
   <hr>
     <div id="footer-links">

@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   
   has_many :posts
 
+  def self.user_exist?(auth)
+    where(provider: auth.provider, uid: auth.uid).first
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -20,6 +24,14 @@ class User < ActiveRecord::Base
       user.image = auth.info.image # assuming the user model has an image
     end
   end
+
+  # def self.from_omniauth(auth)
+  #   if !self.user_exist?(auth)
+  #     User.create(provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0,20], name: auth.info.name, image: auth.info.image)
+  #   else
+  #     user
+  #   end
+  # end
 
   def first_name
     self.name.split(" ").first

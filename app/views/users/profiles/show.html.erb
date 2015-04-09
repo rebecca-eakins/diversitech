@@ -1,0 +1,16 @@
+<h1><%= @user.name %>'s Profile</h1>
+<%= link_to "Edit Profile", profile_edit_path(current_user) %>
+
+<h4>Education</h4>
+<ul>
+  <% current_user.institutions.where('institution_type = "School"').each do |institution| %>
+    <li><%= institution.name %></li>
+  <% end %>
+</ul>
+
+<h4>Work History</h4>
+<ul>
+  <% current_user.institutions.where('institution_type = "Work"').each do |institution| %>
+    <li><%= institution.name %></li>
+  <% end %>
+</ul>
