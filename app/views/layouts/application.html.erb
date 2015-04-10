@@ -13,6 +13,7 @@
   <%= render 'layouts/sidebar' %>
   
   <div class="container" id="main">
+  <%= render 'layouts/flash_messages' if !flash.empty? %>
     <%= yield %>
   </div>
   

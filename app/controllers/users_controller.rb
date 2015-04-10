@@ -2,10 +2,20 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
+    if Connection.found?(current_user, @user)
+      @connection = Connection.find_by(follower_id: current_user, target_id: @user)
+    else
+      @connection = Connection.new
+    end
   end
 
   def edit
-    @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
+    if current_user.id == params[:id]
+      @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
+    else
+      flash[:alert] = "You are not authorized to view that page, sorry!"
+      redirect_to user_path(params[:id])
+    end
   end
 
   def update

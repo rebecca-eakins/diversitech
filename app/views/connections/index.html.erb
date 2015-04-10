@@ -1,0 +1,22 @@
+<h1>Connections</h1>
+
+<h2>People you follow</h2>
+<ul>
+  <% @targets.each do |target| %>
+    <li><%= link_to target.name, user_path(target) %></li>
+  <% end %>
+</ul>
+
+<h2>Your Followers</h2>
+<ul>
+  <% @followers.each do |follower| %>
+    <li><%= link_to follower.name, user_path(follower) %></li>
+  <% end %>
+</ul>
+
+<h2>Inspiring People In the Community</h2>
+<ul>
+  <% @users_to_view.each do |user| %>
+    <li><%= link_to user.name, user_path(user) %></li>
+  <% end %>
+</ul>

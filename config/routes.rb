@@ -1,35 +1,28 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
-  resources :users, :only => [:show, :update, :edit]
-  # resources :users, :controllers => { :profiles => "users/profiles" }
-  # resources :'users/profiles'
-
-  resources :user_institutions, :only => [:create, :edit, :update, :destroy]
-  
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-  get 'search_results' => 'search#show'
-  
-  # get '/[:user_id]' => 'profile#show' #has no authorization at all (right now), unless you want to specify that a user is LOGGED IN before they can send a message. (authentication, but not authorization.)
-
-  # get '/[:user_id]/edit' => 'profile#edit' #this will require authorization so that the current user can only see the edit page for their user ID or slug.
-  
-  # # will need to POST a profile PATCH page
-  # #post/patch '/[:user_id]' => 'profile#update'
-  # get '/my_profile/settings' => 'users#settings'
-
-  #should profile and settings be one and the same?
-
-
-  # You can have the root of your site routed with "root"
   root 'welcome#index'
+  get 'search_results' => 'search#show'
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  resources :users, :only => [:show, :update, :edit]
+  
+  resources :user_institutions, :only => [:create, :edit, :update, :destroy]
   resources :resources, :only => [:index, :show]
-
+  resources :connections, only: [:index, :create, :update]
   resources :goals, :only => [:show] do
     resources :posts, :only => [:index, :show]
   end
+  
+  # NOTES ON PROFILES & AUTHOR/AUTHENTICATION
+    # get '/[:user_id]' => 'profile#show' #has no authorization at all (right now), unless you want to specify that a user is LOGGED IN before they can send a message. (authentication, but not authorization.)
+  
+    # # will need to POST a profile PATCH page
+    # #post/patch '/[:user_id]' => 'profile#update'
+    # get '/my_profile/settings' => 'users#settings'
+
+    # should profile and settings be one and the same?
+
+  # RAILS EXAMPLES 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

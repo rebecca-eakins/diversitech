@@ -1,0 +1,4 @@
+<%= form_for(@connection) do |f|%>
+  <%= f.hidden_field :target_id, value: @user.id %>
+  <div class="actions"><%= f.submit "Follow" %></div>
+<% end %>
