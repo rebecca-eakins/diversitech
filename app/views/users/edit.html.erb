@@ -15,13 +15,17 @@
 
 <% @user.institutions.each do |institution| %>
   <%= institution.name %>
+
   <%= form_for UserInstitution.find_by(user_id: @user.id, institution_id: institution.id) do |ui_form| %>
     <%= ui_form.text_field :institution_type %>
     <%= ui_form.date_field :start_date %>
     <%= ui_form.date_field :end_date %>
+    <%= ui_form.hidden_field :id %>
     <%= ui_form.submit %>
   <% end %>
-  <%= link_to "Delete", user_institution_path, :method => :delete %>
+
+  <%= link_to "Delete", user_institution_path(UserInstitution.find_by(user_id: @user.id, institution_id: institution.id)), :method => :delete %>
+  
 <% end %>
 
 <h5>New Institution</h5>
