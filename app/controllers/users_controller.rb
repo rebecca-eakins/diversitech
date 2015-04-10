@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user.id == params[:id]
+    if current_user.id == params[:id].to_i
       @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
     else
       flash[:alert] = "You are not authorized to view that page, sorry!"
