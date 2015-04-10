@@ -23,8 +23,12 @@ class User < ActiveRecord::Base
 
   #CLASS METHODS
 
-  def self.user_exist?(auth)
+  def self.github_user_exist?(auth)
     where(provider: auth.provider, uid: auth.uid).first
+  end
+
+  def self.devise_user_exist?(params_hash)
+    where(name: params_hash[:name], email: params_hash[:email]).first
   end
 
   def self.from_omniauth(auth)

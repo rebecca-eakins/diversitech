@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def github
-    @new_user = !User.user_exist?(request.env["omniauth.auth"])
+    @new_user = !User.github_user_exist?(request.env["omniauth.auth"])
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
