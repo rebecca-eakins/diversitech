@@ -13,7 +13,9 @@
 
   <div class="page-container">
     <div class="sidebar-menu">
-      <%= render 'layouts/sidebar' %>
+      <% if user_signed_in? %>
+        <%= render 'layouts/sidebar' %>
+      <% end %>
     </div>
     <div class="main-content">
       <%= render 'layouts/flash_messages' if !flash.empty? %>
