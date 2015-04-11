@@ -1,25 +1,244 @@
-<nav class="navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">Diversitech</a>
+    <div class="row">
+    
+      <!-- Profile Info and Notifications -->
+      <div class="col-md-6 col-sm-8 clearfix">
+    
+        <ul class="user-info pull-left pull-none-xsm">
+    
+          <!-- Profile Info -->
+          <li class="profile-info"><!-- add class "pull-right" if you want to place this from right -->
+    
+            <a href="p" class="dropdown-toggle" data-toggle="dropdown">
+            <%= image_tag(current_user.image, :id => 'profile_pic') %>
+              <%= current_user.name %>
+            </a>
+          </li>
+        </ul>
+        
+        <ul class="user-info pull-left pull-right-xs pull-none-xsm">
+    
+          <!-- Raw Notifications -->
+          <li class="notifications dropdown">
+    
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+              <i class="entypo-attention"></i>
+              <span class="badge badge-info">6</span>
+            </a>
+    
+            <ul class="dropdown-menu">
+              <li class="top">
+                <p class="small">
+                  <a href="#" class="pull-right">Mark all Read</a>
+                  You have <strong>3</strong> new notifications.
+                </p>
+              </li>
+              
+              <li>
+                <ul class="dropdown-menu-list scroller">
+                  <li class="unread notification-success">
+                    <a href="#">
+                      <i class="entypo-user-add pull-right"></i>
+                      
+                      <span class="line">
+                        <strong>New user registered</strong>
+                      </span>
+                      
+                      <span class="line small">
+                        30 seconds ago
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li class="unread notification-secondary">
+                    <a href="#">
+                      <i class="entypo-heart pull-right"></i>
+                      
+                      <span class="line">
+                        <strong>Someone special liked this</strong>
+                      </span>
+                      
+                      <span class="line small">
+                        2 minutes ago
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li class="notification-primary">
+                    <a href="#">
+                      <i class="entypo-user pull-right"></i>
+                      
+                      <span class="line">
+                        <strong>Privacy settings have been changed</strong>
+                      </span>
+                      
+                      <span class="line small">
+                        3 hours ago
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li class="notification-danger">
+                    <a href="#">
+                      <i class="entypo-cancel-circled pull-right"></i>
+                      
+                      <span class="line">
+                        John cancelled the event
+                      </span>
+                      
+                      <span class="line small">
+                        9 hours ago
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li class="notification-info">
+                    <a href="#">
+                      <i class="entypo-info pull-right"></i>
+                      
+                      <span class="line">
+                        The server is status is stable
+                      </span>
+                      
+                      <span class="line small">
+                        yesterday at 10:30am
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li class="notification-warning">
+                    <a href="#">
+                      <i class="entypo-rss pull-right"></i>
+                      
+                      <span class="line">
+                        New comments waiting approval
+                      </span>
+                      
+                      <span class="line small">
+                        last week
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              
+              <li class="external">
+                <a href="#">View all notifications</a>
+              </li>
+            </ul>
+    
+          </li>
+    
+          <!-- Message Notifications -->
+          <li class="notifications dropdown">
+    
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+              <i class="entypo-mail"></i>
+              <span class="badge badge-secondary">10</span>
+            </a>
+    
+            <ul class="dropdown-menu">
+              <li>
+                <form class="top-dropdown-search">
+                  
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search anything..." name="s" />
+                  </div>
+                  
+                </form>
+                
+                <ul class="dropdown-menu-list scroller">
+                  <li class="active">
+                    <a href="#">
+                      <span class="image pull-right">
+                        <img src="assets/images/thumb-1.png" alt="" class="img-circle" />
+                      </span>
+                      
+                      <span class="line">
+                        <strong>Luc Chartier</strong>
+                        - yesterday
+                      </span>
+                      
+                      <span class="line desc small">
+                        This ain’t our first item, it is the best of the rest.
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li class="active">
+                    <a href="#">
+                      <span class="image pull-right">
+                        <img src="assets/images/thumb-1.png" alt="" class="img-circle" />
+                      </span>
+                      
+                      <span class="line">
+                        <strong>Salma Nyberg</strong>
+                        - 2 days ago
+                      </span>
+                      
+                      <span class="line desc small">
+                        Oh he decisively impression attachment friendship so if everything. 
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="#">
+                      <span class="image pull-right">
+                        <img src="assets/images/thumb-1.png" alt="" class="img-circle" />
+                      </span>
+                      
+                      <span class="line">
+                        Hayden Cartwright
+                        - a week ago
+                      </span>
+                      
+                      <span class="line desc small">
+                        Whose her enjoy chief new young. Felicity if ye required likewise so doubtful.
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="#">
+                      <span class="image pull-right">
+                        <img src="assets/images/thumb-1.png" alt="" class="img-circle" />
+                      </span>
+                      
+                      <span class="line">
+                        Sandra Eberhardt
+                        - 16 days ago
+                      </span>
+                      
+                      <span class="line desc small">
+                        On so attention necessary at by provision otherwise existence direction.
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              
+              <li class="external">
+                <a href="mailbox.html">All Messages</a>
+              </li>
+            </ul>
+    
+          </li>
+    
+        </ul>
+    
       </div>
-      <div id="navbar" class="navbar-collapse collapse">
-      <%= render 'layouts/search' %>
-        <ul class="nav navbar-nav navbar-right">
-        <% if !current_user %>
-          <li><%= link_to "Join", new_user_registration_path %></li>
-          <li><%= link_to "Sign In", new_user_session_path %></li>
-        <% else %>
-          <li><%= link_to current_user.first_name, root_path  %></li>
-          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        <% end %>
-        </ul>        
-      </div><!--/.nav-collapse -->
+    
+    
+      <!-- Raw Links -->
+      <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+    
+        <ul class="list-inline links-list pull-right">
+    
+          <li>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          </li>
+        </ul>
+    
+      </div>
+    
     </div>
-  </nav>

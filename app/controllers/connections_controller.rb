@@ -1,5 +1,6 @@
 class ConnectionsController < ApplicationController
   before_action :lookup_target_user, only: [:create, :update]
+  before_action :authenticate_user!
 
   def index
     if current_user

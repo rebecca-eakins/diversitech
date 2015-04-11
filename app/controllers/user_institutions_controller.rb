@@ -1,4 +1,6 @@
 class UserInstitutionsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @ui = UserInstitution.find_or_create_by(ui_params)
     redirect_to :back

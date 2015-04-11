@@ -1,5 +1,7 @@
 <h1>Goal: <%= @goal.name %></h1>
 
+<%= render 'layouts/search' %>
+
 <h2><%= link_to "Forum", goal_posts_path(@goal) %></h2> <%#= @current_user.primary_goal %>
 
 

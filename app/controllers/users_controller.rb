@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :find_user
+  before_action :find_user, only: [:show, :edit, :update]
+  before_action :authenticate_user!
+
 
   def show
     if Connection.found?(current_user, @user)

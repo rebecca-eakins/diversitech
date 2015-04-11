@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
 
   before_action :find_goal, :only => [:index, :show]
 
