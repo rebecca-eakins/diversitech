@@ -3,19 +3,22 @@
 <head>
   <title>Diversitech</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <%= analytics_init if Rails.env.production? %>
 </head>
-<body>
-
+<body class="page-body">
   <%= render 'layouts/navbar' %>
-  <%= render 'layouts/sidebar' %>
-  
-  <div class="container" id="main">
-  <%= render 'layouts/flash_messages' if !flash.empty? %>
-    <%= yield %>
+
+  <div class="page-container">
+    <div class="sidebar-menu">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="main-content">
+      <%= render 'layouts/flash_messages' if !flash.empty? %>
+      <%= yield %>
+    </div>
   </div>
-  
 </body>
 </html>
