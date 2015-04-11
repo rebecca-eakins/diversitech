@@ -20,6 +20,9 @@
     <div class="main-content">
       <%= render 'layouts/flash_messages' if !flash.empty? %>
       <%= yield %>
+      <footer class="main">
+        <%= render 'layouts/footer' %>
+      </footer>
     </div>
   </div>
 </body>
