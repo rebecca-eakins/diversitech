@@ -8,9 +8,9 @@
   <%= csrf_meta_tags %>
   <%= analytics_init if Rails.env.production? %>
 </head>
+  <% if user_signed_in? %>
 <body class="page-body">
   <div class="page-container">
-  <% if user_signed_in? %>
     <div class="sidebar-menu">
         <%= render 'layouts/sidebar' %>
     </div>
@@ -22,10 +22,10 @@
         <%= render 'layouts/footer' %>
       </footer>
     </div> <!-- END MAIN CONTENT -->
+  </div>
+</body>
   <% else %>
     <%= yield %>
   <% end %>
-  </div>
-</body>
 </html>
 
