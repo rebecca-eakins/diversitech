@@ -1,12 +1,7 @@
 <%= form_for(Search.new, :url => search_results_path, :role => 'search', :method => 'get') do |f| %>
 	<div class='navbar-form navbar-left'>
 		<div class="form-group">
-	    <select name="category" class="form-control">
-	    	<option value="None">Search For...</option>
-	    	<option value="Discussion">Discussion</option>
-	    	<option value="Resource">Resource</option>
-	    </select>
-		<%= f.text_field :search_term, label: false,  placeholder: 'Find Discussion or Resource', :class => "form-control" %> 
+		<%= f.text_field :search_term, label: false,  placeholder: 'Find Discussion by Keyword', :class => "form-control" %>
 	  </div>
 		<%= f.submit "Go", :class => "btn btn-default" %>
 	</div>	
