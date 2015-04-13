@@ -1,15 +1,38 @@
-<%= render 'layouts/search' %>
-<br>
-<br>
-<br>
-<% Goal.all.each do |goal| %>
-	<%= link_to goal.name, goal_posts_path(goal), :class => "#{'current' if goal.id == params[:goal_id].to_i}" %>
-<% end %>
+<!-- NOTES TO SELF:
+1. i want to change this to forum index page instead of posts index page to eliminate the nesting under goals/posts => goals/1/posts
+2. figure out how to align the tabs in the form to the bottom so that the line with the top of the content box is even
+	2a. alternatively decrease height/padding of search box -->
 
-<ul>
-<% @goal.posts.each do |post| %>
-	<li><h4><%= link_to post.content, goal_post_path(@goal, post) %></h4>
-	<p>Posted by <%= User.find(post.user_id).name %></p>
-<% end %>
-
-</ul>
+<h3>Forum</h3><br>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<!-- <div class="panel-title"></div> -->
+					<%= render 'layouts/search' %>
+				<div class="panel-options">
+					<ul class="nav nav-tabs">
+						<% Goal.all.each do |goal| %>
+							<li class="<%= "active" if goal.id == 1 %>"><%= link_to goal.name.capitalize, "##{goal.name}-forum", :"data-toggle" => "tab" %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="tab-content">
+					<% Goal.all.each do |goal| %>
+						<div class="tab-pane<%= " active" if goal.id == 1 %>" id="<%= goal.name %>-forum">
+							<ul>
+								<% goal.posts.each do |post| %>
+									<li><h4><%= link_to post.content, goal_post_path(goal, post) %></h4>
+									<p>Posted by <%= User.find(post.user_id).name %></p>
+								<% end %>
+							</ul>
+							<!-- goal_posts_path is no longer necessary!!! -->
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

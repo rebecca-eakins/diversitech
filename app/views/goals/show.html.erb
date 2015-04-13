@@ -1,15 +1,35 @@
-<h1>Goal: <%= @goal.name %></h1>
+<h3><%= @goal.name.capitalize %></h3><br>
 
-<%= render 'layouts/search' %>
+<div class="row">
+	<div class="col-sm-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">Recent Forum Posts <%= link_to "(see all)", goal_posts_path(Goal.first) %></div>
+					<%= render 'layouts/search' %>
+			</div>
+			<div class="panel-body">
+				<ul>
+					<% @goal.posts.limit(5).each do |post| %>
+						<li><h4><%= link_to post.content, goal_post_path(@goal, post) %></h4>
+						<p>Posted by <%= User.find(post.user_id).name %></p>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-<h2><%= link_to "Forum", goal_posts_path(@goal) %></h2> <%#= @current_user.primary_goal %>
-
-
-<h2>Resources</h2>
-
-<p></p>
-<h4>Recently added resources:</h4>
-<ul>
-	<li>Resource 1</li>
-	<li>Resource 2</li>
-</ul>
+	<div class="col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">Resources</div>
+			</div>
+			<div class="panel-body">
+				<p>Recently added resources:</p>
+				<ul>
+					<li>Resource 1</li>
+					<li>Resource 2</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
