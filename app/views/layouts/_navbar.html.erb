@@ -3,17 +3,15 @@
       <!-- Profile Info and Notifications -->
       <div class="col-md-6 col-sm-8 clearfix">
     
-        <ul class="user-info pull-left pull-none-xsm">
+        <div class="user-info pull-left pull-none-xsm">
     
           <!-- Profile Info -->
-          <li class="profile-info"><!-- add class "pull-right" if you want to place this from right -->
     
-            <a href="p" class="dropdown-toggle" data-toggle="dropdown">
-            <%= image_tag(current_user.image, :id => 'profile_pic') %>
+            <div class="dropdown-toggle" data-toggle="dropdown">
+              <%= image_tag(current_user.image, :id => 'profile_pic') %>
               <%= current_user.name %>
-            </a>
-          </li>
-        </ul>
+            </div>
+        </div>
         
         <ul class="user-info pull-left pull-right-xs pull-none-xsm">
     
@@ -235,10 +233,12 @@
         <ul class="list-inline links-list pull-right">
     
           <li>
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            <%= link_to "Sign Out  <i class='entypo-logout right'></i>".html_safe, destroy_user_session_path, method: :delete%>
           </li>
         </ul>
     
       </div>
     
     </div>
+
+    <hr>

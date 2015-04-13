@@ -18,9 +18,10 @@
 }
 
 #profile_pic {
-	width: 50px;
+	width: 44px;
 	margin: 0 auto;
   border-radius: 100%;
+  margin-right: 5px;
 }
 
 .sidebar > * {
@@ -61,4 +62,19 @@
 /*****************************************************************************/
 #search_search_term {
 	width: 250px;
+}
+
+.dropdown-toggle, .links-list {
+	font-size: 14px;
+	color: #373e4a;
+}
+
+.badge.badge-info {
+  background-color: #21a9e1;
+  color: #ffffff;
+}
+
+.badge.badge-secondary {
+  background-color: #ee4749;
+  color: #ffffff;
 }
