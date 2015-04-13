@@ -45,15 +45,28 @@
 				<div class="panel-title"><%= link_to "Trending Forum Discussions", goal_posts_path(Goal.first) %></div>
 				<div class="panel-options">
 					<ul class="nav nav-tabs">
-						<li class=""><a href="#code-forum" data-toggle="tab">All</a></li>
+						<li class="active"><a href="#all-forum" data-toggle="tab">All</a></li>
 						<li class=""><a href="#code-forum" data-toggle="tab">Code</a></li>
-						<li class="active"><a href="#career-forum" data-toggle="tab">Career</a></li>
+						<li class=""><a href="#career-forum" data-toggle="tab">Career</a></li>
 						<li class=""><a href="#advocacy-forum" data-toggle="tab">Advocacy</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="panel-body">
-				<p>[placeholder] Feed</p>
+				<div class="tab-content">
+					<div class="tab-pane active" id="all-forum">
+						<p>[placeholder] All Feed</p>
+					</div>
+					<div class="tab-pane" id="code-forum">
+						<p>[placeholder] Code Feed</p>
+					</div>
+					<div class="tab-pane" id="career-forum">
+						<p>[placeholder] career Feed</p>
+					</div>
+					<div class="tab-pane" id="advocacy-forum">
+						<p>[placeholder] advocacy Feed</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
