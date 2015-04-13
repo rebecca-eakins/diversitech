@@ -3,26 +3,60 @@
 <% else %>
 
 
-	<h1>My Dashboard</h1>
+<h3>My Dashboard</h3><br>
 
-<h2><%= link_to "Network Activity", connections_path %></h2>
-		<p>[Placeholder] Ellen accepted your mentorship request at XX:XX on XX/XX</p>
-		<p>[Placeholder] Your connection Amanda posted a new resource filed under Career at XX:XX on XX/XX</p>
-		<p>[Placeholder] 23 people in your network have saved "How to be a good team member" to read for later</p>
-		<p>[Placeholder] Carly Smith invited you to Chicks on Rails meetup</p>
+<div class="row">
+	<div class="col-sm-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title"><%= link_to "Network Activity", connections_path %></div>
+			</div>
+			<div class="panel-body">
+				<p>[Placeholder] Ellen accepted your mentorship request at XX:XX on XX/XX</p>
+				<p>[Placeholder] Your connection Amanda posted a new resource filed under Career at XX:XX on XX/XX</p>
+				<p>[Placeholder] 23 people in your network have saved "How to be a good team member" to read for later</p>
+				<p>[Placeholder] Carly Smith invited you to Chicks on Rails meetup</p>
+			</div>
+		</div>
+	</div>
 
-	<h2><%= link_to "Trending Forum Discussions", goal_posts_path(Goal.first) %></h2> <%#= @current_user.primary_goal %>
-		<h3>All	|	Code	|	Career	|	Advocacy</h3>
-		<p>[placeholder] Feed</p>
+		<div class="col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title">Resources</div>
+			</div>
+			<div class="panel-body">
+				<p>Most clicked resources that may interest you:</p>
+				<ul>
+					<li>[google analytics]</li>
+					<li>Resource 1</li>
+					<li>Resource 2</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-	<h2>Resources</h2>
+</div>
 
-	<p></p>
-	<h4>Most clicked resources that may interest you:</h4>
-	<ul>
-		<li>[google analytics]</li>
-		<li>Resource 1</li>
-		<li>Resource 2</li>
-	</ul>
+<div class="row">
+	<div class="col-sm-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="panel-title"><%= link_to "Trending Forum Discussions", goal_posts_path(Goal.first) %></div>
+				<div class="panel-options">
+					<ul class="nav nav-tabs">
+						<li class=""><a href="#code-forum" data-toggle="tab">All</a></li>
+						<li class=""><a href="#code-forum" data-toggle="tab">Code</a></li>
+						<li class="active"><a href="#career-forum" data-toggle="tab">Career</a></li>
+						<li class=""><a href="#advocacy-forum" data-toggle="tab">Advocacy</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="panel-body">
+				<p>[placeholder] Feed</p>
+			</div>
+		</div>
+	</div>
+</div>
 
 <% end %>

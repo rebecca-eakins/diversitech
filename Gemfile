@@ -53,7 +53,7 @@ end
 
 gem 'factory_girl_rails'
 gem 'faker' #=> produces random fake test data
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.3.4'
 gem 'devise'
 gem 'figaro'
 gem 'omniauth-github'

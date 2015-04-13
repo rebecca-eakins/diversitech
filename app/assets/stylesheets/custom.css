@@ -69,12 +69,16 @@
 	color: #373e4a;
 }
 
-.badge.badge-info {
-  background-color: #21a9e1;
-  color: #ffffff;
+.panel-heading {
+	padding: 0;
 }
 
-.badge.badge-secondary {
-  background-color: #ee4749;
-  color: #ffffff;
+#user-name {
+	/*vertical-align: middle;*/
+	margin-top: 9px;
+	margin-bottom: 9px;
+}
+
+#site-logo {
+	margin: 0px;
 }
