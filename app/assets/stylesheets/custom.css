@@ -4,6 +4,11 @@
 /*
 /*****************************************************************************/
 
+.logo a {
+  vertical-align: middle;
+  margin: 0;
+}
+
 .sidebar {
   float: left;
   width: 25%;
