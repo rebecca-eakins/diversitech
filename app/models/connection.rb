@@ -5,6 +5,9 @@ class Connection < ActiveRecord::Base
   validates :follower_id, presence: true
   validates :target_id, presence: true
 
+  validates :connection_status, inclusion: { in: %w(confirmed pending unfollowed),
+    message: "%{value} is not a valid status" }, allow_blank: true
+
   validates_uniqueness_of :follower_id, :scope => :target_id
   validate :cannot_follow_self
 
