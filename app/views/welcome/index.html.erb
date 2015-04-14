@@ -50,18 +50,11 @@
 			<div class="panel-body">
 				<div class="tab-content">
 					<%= link_to "See all", posts_path %>
-					<div class="tab-pane active" id="all-forum">
-						<%= render :partial => 'posts/post', :collection => current_user.feed %>
-					</div>
-					<div class="tab-pane" id="code-forum">
-						<%= render :partial => 'posts/post', :collection => current_user.feed('code') %>
-					</div>
-					<div class="tab-pane" id="career-forum">
-						<%= render :partial => 'posts/post', :collection => current_user.feed('career') %>
-					</div>
-					<div class="tab-pane" id="advocacy-forum">
-						<%= render :partial => 'posts/post', :collection => current_user.feed('advocacy') %>
-					</div>
+					<% %w[all code career advocacy].each do |goal| %>
+						<div class="tab-pane active" id="<%= goal %>-forum">
+							<%= render :partial => 'posts/post', :collection => current_user.feed(goal) %>
+						</div>
+					<% end %>
 				</div>
 			</div>
 		</div>
