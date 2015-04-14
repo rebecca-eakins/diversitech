@@ -3,4 +3,6 @@ $("li#code-forum-tab").removeClass("active")
 $("li#career-forum-tab").removeClass("active")
 $("li#advocacy-forum-tab").removeClass("active")
 
-$("div.relevant-posts").replaceWith("<%= j render :partial => 'search/clear_results' %>")
+$("div#all-forum").addClass("active")
+
+$("div#search-results").addClass("hide")

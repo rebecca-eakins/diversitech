@@ -11,7 +11,6 @@ class SearchController < ApplicationController
   end
 
   def clear
-    # goal = Goal.all
     respond_to do |f|
       f.js {}
       f.html {redirect_to posts_path}
