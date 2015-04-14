@@ -22,9 +22,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.current_zip = params[:user][:current_zip]
-    @user.name = params[:user][:name]
-    @user.save
+    @user = User.find(params[:id])
+    @user.update(item_params)
     redirect_to :back
   end
 
@@ -34,4 +33,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def item_params
+    params.require(:user).permit(:email, :name, :image, :current_zip)
+  end
+  
 end
