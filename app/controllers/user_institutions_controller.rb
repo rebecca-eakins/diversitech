@@ -7,7 +7,9 @@ class UserInstitutionsController < ApplicationController
   end
 
   def update
-    #STUB STUB STUB
+    @ui = UserInstitution.find(params[:id])
+    @ui.update(ui_params)
+    redirect_to :back
   end
 
   def destroy

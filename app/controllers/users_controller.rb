@@ -12,13 +12,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    binding.pry
+    @inst_id = session[:institution]["id"] || 1
+
     if current_user.id == params[:id].to_i
       @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
     else
       flash[:alert] = "You are not authorized to view that page, sorry!"
       redirect_to user_path(params[:id])
     end
+    @user_institutions = UserInstitution.where(user_id: current_user.id)
   end
 
   def update
