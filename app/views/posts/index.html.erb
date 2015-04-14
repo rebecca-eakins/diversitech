@@ -24,10 +24,9 @@
 						<div class="tab-pane<%= " active" if goal.id == 1 %>" id="<%= goal.name %>-forum">
 							<ul>
 								<% goal.posts.each do |post| %>
-									<%= render 'post', goal: goal, post: post %>
+									<%= render 'post', post: post %>
 								<% end %>
 							</ul>
-							<!-- goal_posts_path is no longer necessary!!! -->
 						</div>
 					<% end %>
 				</div>

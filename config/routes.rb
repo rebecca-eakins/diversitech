@@ -10,9 +10,13 @@ Rails.application.routes.draw do
   resources :user_institutions, :only => [:create, :edit, :update, :destroy]
   resources :resources, :only => [:index, :show]
   resources :connections, only: [:index, :create, :update]
-  resources :goals, :only => [:show] do
-    resources :posts, :only => [:index, :show]
-  end
+  # resources :goals, :only => [:show]
+  get 'goals/:name' => 'goals#show', :as => 'goal'
+
+  # resources :posts, :only => [:index, :show]
+  get 'forum' => 'posts#index', :as => 'posts'
+  get 'forum/:id' => 'posts#show', :as => 'post'
+  
   
   # NOTES ON PROFILES & AUTHOR/AUTHENTICATION
     # get '/[:user_id]' => 'profile#show' #has no authorization at all (right now), unless you want to specify that a user is LOGGED IN before they can send a message. (authentication, but not authorization.)

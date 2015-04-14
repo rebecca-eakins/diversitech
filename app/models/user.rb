@@ -48,8 +48,12 @@ class User < ActiveRecord::Base
 
   # NETWORK INSTANCE METHODS
 
-  def feed
-    Post.from_users_followed_by(self)
+  def feed(goal = 'all')
+    if goal == 'all'
+      Post.from_users_followed_by(self)
+    else
+      Post.from_users_followed_by(self).where(goal_id: Goal.find_by(name: goal))
+    end
   end
 
   def following?(target)
