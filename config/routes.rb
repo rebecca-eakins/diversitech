@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
+  get '/about' => 'welcome#about'
   get 'search_results' => 'search#show'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
