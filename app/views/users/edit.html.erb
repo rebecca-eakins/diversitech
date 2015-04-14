@@ -1,55 +1,174 @@
 <h3><%= flash[:new_user] %></h3>
 
-<h3>User Information</h3>
+<!-- User Information Form -->
 
-<%= form_for @user, :url => user_path(@user) do |f| %>
-  <%= f.label :name, "Display Name" %>
-  <%= f.text_field :name %>
-  <%= f.label :current_zip, "Current Zip Code" %>
-  <%= f.text_field :current_zip %>
-  <%= f.submit %>
-<% end %>
+<div class="panel panel-primary" data-collapsed="0">
 
-<h4>Work and Education History</h4>
+  <div class="panel-heading">
+    <div class="panel-title">User Information</div>
+  </div>
+  
+  <div class="panel-body">
+   
+    <%= form_for @user, :html => {:class => "form-horizontal form-groups-bordered", :role => 'form'} do |f| %>
+
+      <div class="form-group">
+        <%= f.label :name, "Display Name", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_field :name, :class => "form-control", :id => "display-name" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :current_zip, "Current Zip Code", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_field :current_zip, :class => "form-control", :id => "current_zip" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-5">
+          <%= f.submit "Update", :class => "btn btn-default" %>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
+
+<!-- User Work/Education History Form -->
+
+<div class="panel panel-primary" data-collapsed="0">
+
+  <div class="panel-heading">
+    <div class="panel-title">Work and Education History</div>
+  </div>
+  
+  <div class="panel-body">
 
 
-<% @user.institutions.each do |institution| %>
-  <%= institution.name %>
+  <% @user_institutions.each do |ui| %>
+    <%= ui.institution.name %>
 
-  <%= form_for UserInstitution.find_by(user_id: @user.id, institution_id: institution.id) do |ui_form| %>
-    <%= ui_form.text_field :institution_type %>
-    <%= ui_form.date_field :start_date %>
-    <%= ui_form.date_field :end_date %>
-    <%= ui_form.hidden_field :id %>
-    <%= ui_form.submit %>
+    <%= form_for ui, :html => {:class => "form-horizontal form-groups-bordered", :role => 'form'}  do |ui_form| %>
+      <div class="form-group">
+        <%= ui_form.label :institution_type, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%#= ui_form.text_field :institution_type, :class => "form-control" %>
+          <div class="radio">
+            <label>
+              <input type="radio" name="institution_type" id="optionsRadios1" value="school" <%= "checked" if ui.institution_type == "school" %> >School
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="institution_type" id="optionsRadios2" value="work" <%= "checked" if ui.institution_type == "work" %>>Work
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= ui_form.label :start_date, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= ui_form.date_field :start_date, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= ui_form.label :end_date, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= ui_form.date_field :end_date, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-5">
+          <%= ui_form.submit "Update", :class => "btn btn-default" %>
+          <%= link_to "Delete", user_institution_path(ui), :method => :delete, :class => "btn btn-default" %>
+        </div>
+      </div>
+
+    <% end %>
   <% end %>
+  </div>
+</div>
 
-  <%= link_to "Delete", user_institution_path(UserInstitution.find_by(user_id: @user.id, institution_id: institution.id)), :method => :delete %>
+<!-- Add institution -->
+<div class="panel panel-primary" data-collapsed="0">
+
+  <div class="panel-heading">
+    <div class="panel-title">Add an institution</div>
+  </div>
   
-<% end %>
+  <div class="panel-body">
 
-<h5>New Institution</h5>
-<%= form_for UserInstitution.new do |f| %>
-  <%= f.label :institution_id %>
-  <%= select_tag(:institution_id, options_for_select(@institutions_array), name: "user_institution[institution_id]") %>
+    <%= form_for UserInstitution.new, :html => {:class => "form-horizontal form-groups-bordered", :role => 'form'} do |f| %>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Institution</label>
+        <div class="col-sm-5">
+          <%= select_tag(:institution_id, options_for_select(@institutions_array, @inst_id), name: "user_institution[institution_id]", :class => "form-control") %>
+        </div>
+      </div>
 
-  <%= f.label :institution_type %>
-  <%= f.label :institution_type, "work" %>
-  <%= f.radio_button :institution_type, "work" %>
-  <%= f.label :institution_type, "school" %>
-  <%= f.radio_button :institution_type, "school" %>
-  
-  <%= f.label :start_date %>
-  <%= f.date_field :start_date %>
-  <%= f.label :end_date %>
-  <%= f.date_field :end_date %>
-  <%= f.hidden_field :user_id, :value => @user.id %>
-  <%= f.submit %>
-<% end %>
+      <div class="form-group">
+        <%= f.label :institution_type, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <div class="radio">
+            <label>
+              <input type="radio" name="user_institution[institution_type]" id="optionsRadios1" value="school" checked>School
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="user_institution[institution_type]" id="optionsRadios2" value="work">Work
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :start_date, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.date_field :start_date, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_date, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.date_field :end_date, :class => "form-control" %>
+        </div>
+      </div>
+
+      <%= f.hidden_field :user_id, :value => @user.id %>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-5">
+          <%= f.submit "Create", :class => "btn btn-default" %>
+        </div>
+      </div>
+
+
+    <% end %>
+
+    <%= form_for Institution.new, :html => {:class => "form-horizontal form-groups-bordered", :role => 'form'} do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "Don't see your school or workplace? Add it here:", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_field :name, :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-5">
+          <%= f.submit "Create", :class => "btn btn-default" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
 
 <% if params[:new_user] %>
   <%= link_to "Skip", root_path %>
 <% end %>
-
-<h3>User Settings</h3>
-<%= link_to "User Settings", edit_user_registration_path(@user) %>

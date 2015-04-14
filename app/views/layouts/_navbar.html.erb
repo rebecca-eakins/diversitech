@@ -3,18 +3,20 @@
       <!-- Profile Info and Notifications -->
       <div class="col-md-6 col-sm-8 clearfix">
     
-        <div class="user-info pull-left pull-none-xsm">
+        <ul class="user-info pull-left pull-none-xsm">
     
           <!-- Profile Info -->
-            <div class="dropdown-toggle" data-toggle="dropdown">
-              <% if current_user.image %>
-                <%= image_tag(current_user.image, :id => 'profile_pic') %>
-                <span><%= current_user.name %></span>
-              <% else %>
-                <li id="user-name"><%= current_user.name %></li>
-              <% end %>
-            </div>
-        </div>
+            <li class="user-info">
+              <a href="<%= user_path(current_user) %>">
+                <% if current_user.image %>
+                  <%= image_tag(current_user.image, :id => 'profile_pic') %>
+                  <span><%= current_user.name %></span>
+                <% else %>
+                  <li id="user-name"><%= current_user.name %></li>
+                <% end %>
+              </a>
+            </li>
+        </ul>
         
         <ul class="user-info pull-left pull-right-xs pull-none-xsm">
     
