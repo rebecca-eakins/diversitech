@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @inst_id = session[:institution]["id"] || 1
+    @inst_id = session[:institution]["id"] if session[:institution]
 
     if current_user.id == params[:id].to_i
       @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
