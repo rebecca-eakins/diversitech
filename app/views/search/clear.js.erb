@@ -1,0 +1,6 @@
+$("li#all-forum-tab").addClass("active")
+$("li#code-forum-tab").removeClass("active")
+$("li#career-forum-tab").removeClass("active")
+$("li#advocacy-forum-tab").removeClass("active")
+
+$("div.relevant-posts").replaceWith("<%= j render :partial => 'search/clear_results' %>")

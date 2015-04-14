@@ -1,0 +1,9 @@
+<div class="relevant-posts">
+	Found <%= @post_results.count %> matching posts <%= link_to "Clear results", clear_path, :remote => true %>
+
+	<ul>
+		<% @post_results.each do |post| %>
+			<%= render 'posts/post', post: post %>
+		<% end %>
+	</ul>
+</div>
