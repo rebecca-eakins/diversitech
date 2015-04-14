@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    binding.pry
     if current_user.id == params[:id].to_i
       @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
     else

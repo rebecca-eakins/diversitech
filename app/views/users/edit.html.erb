@@ -47,9 +47,13 @@
   <%= f.submit %>
 <% end %>
 
+<p>Don't see your school or workplace? Add it here:</p>
+<%= form_for Institution.new do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit "Go" %>
+<% end %>
+
 <% if params[:new_user] %>
   <%= link_to "Skip", root_path %>
 <% end %>
-
-<h3>User Settings</h3>
-<%= link_to "User Settings", edit_user_registration_path(@user) %>
