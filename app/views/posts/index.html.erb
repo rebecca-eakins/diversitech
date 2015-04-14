@@ -12,9 +12,9 @@
 				<div class="panel-options">
 					<ul class="nav nav-tabs">
 							
-							<li class="active"><%= link_to "All", "#all-forum", :"data-toggle" => "tab" %></li>
+							<li class="active" id="all-forum-tab"><%= link_to "All", "#all-forum", :"data-toggle" => "tab" %></li>
 						<% Goal.all.each do |goal| %>
-							<li class=""><%= link_to goal.name.capitalize, "##{goal.name}-forum", :"data-toggle" => "tab" %></li>
+							<li class="" id="<%= goal.name %>-forum-tab"><%= link_to goal.name.capitalize, "##{goal.name}-forum", :"data-toggle" => "tab" %></li>
 						<% end %>
 
 					</ul>
@@ -24,7 +24,7 @@
 				<div class="tab-content">
 					
 						<div class="tab-pane active" id="all-forum">
-							<div id="relevant-posts">
+							<div class="relevant-posts">
 								<ul>
 									<% Post.all.each do |post| %>
 										<%= render 'post', post: post %>
@@ -35,7 +35,7 @@
 
 					<% Goal.all.each do |goal| %>
 						<div class="tab-pane" id="<%= goal.name %>-forum">
-							<div id="relevant-posts">
+							<div class="relevant-posts">
 								<ul>
 									<% goal.posts.each do |post| %>
 										<%= render 'post', post: post %>

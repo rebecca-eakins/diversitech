@@ -1,6 +1,6 @@
-<div id="relevant-posts">
+<div class="relevant-posts">
 	<ul>
-		<% @goal.posts.each do |post| %>
+		<% Post.all.each do |post| %>
 			<%= render 'posts/post', post: post %>
 		<% end %>
 	</ul>
