@@ -10,6 +10,14 @@ class SearchController < ApplicationController
     end
   end
 
+  def clear
+    @goal = Goal.first
+    respond_to do |f|
+      f.js {}
+      f.html {redirect_to posts_path}
+    end
+  end
+
 private
 
   def search_results

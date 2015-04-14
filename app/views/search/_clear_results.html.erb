@@ -1,8 +1,6 @@
 <div id="relevant-posts">
-	Found <%= @post_results.count %> matching posts
-
 	<ul>
-		<% @post_results.each do |post| %>
+		<% @goal.posts.each do |post| %>
 			<%= render 'posts/post', post: post %>
 		<% end %>
 	</ul>
