@@ -4,7 +4,7 @@
 	<div class="col-sm-8">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<div class="panel-title"><%= link_to "Network Activity", connections_path %></div>
+				<div class="panel-title"><%= link_to "Network Activity", connections_path, :class => "dash-link" %></div>
 			</div>
 			<div class="panel-body">
 				<p>[Placeholder] Ellen accepted your mentorship request at XX:XX on XX/XX</p>
@@ -37,7 +37,7 @@
 	<div class="col-sm-8">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<div class="panel-title"><%= link_to "Trending Forum Discussions", goal_posts_path(Goal.first) %></div>
+				<div class="panel-title"><%= link_to "Trending Forum Discussions", goal_posts_path(Goal.first), :class => "dash-link" %></div>
 				<div class="panel-options">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#all-forum" data-toggle="tab">All</a></li>

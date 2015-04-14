@@ -7236,9 +7236,9 @@ lesshat-selector {
 .panel-primary > .panel-heading > .dropdown .caret {
   border-color: #373e4a transparent;
 }
-.panel-primary > .panel-heading > .panel-title > a {
+/*.panel-primary > .panel-heading > .panel-title > a {
   color: #373e4a;
-}
+}*/
 .panel-primary > .panel-heading > .panel-options > a {
   display: inline-block;
   color: rgba(55, 62, 74, 0.7);
