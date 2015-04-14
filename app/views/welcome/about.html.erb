@@ -11,12 +11,14 @@
         
         <h1>About Us</h1>
           <ol class="breadcrumb bc-3" >
+          <% if !user_signed_in? %>
             <li>
-              <a href="<%= root_path %>"><i class="fa-home"></i>The Community</a>
+              <a href="<%= root_path %>"><i class="fa-home"></i>Join</a>
             </li>
             <li class="active">
                <strong>About</strong>
             </li>
+          <% end %>
           </ol>
               
       </div>
