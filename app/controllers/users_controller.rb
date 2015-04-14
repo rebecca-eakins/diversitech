@@ -21,16 +21,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.current_zip = params[:user][:current_zip]
-    @user.name = params[:user][:name]
-    @user.save
-    redirect_to :back
+    @user = User.find(params[:id])
+    @user.update(item_params)
+    # render :nothing => true, :status => :ok i think this was before .js.erb
+    respond_to do |f|
+      f.html {redirect_to :back}
+      f.js {}
+    end 
+    # redirect_to :back
   end
 
   private
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def item_params
+    params.require(:user).permit(:email, :name, :image, :current_zip)
   end
 
 end
