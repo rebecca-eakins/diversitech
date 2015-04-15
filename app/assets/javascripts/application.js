@@ -21,6 +21,5 @@
 //= require neon-custom
 //= require neon-demo
 
-
 // require_tree ../../../vendor/assets/javascripts/.
 // require_tree .
