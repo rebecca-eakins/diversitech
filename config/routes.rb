@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   get 'search_results' => 'search#show'
   get 'clear' => 'search#clear'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
+  devise_for :users, :controllers => { 
+    :omniauth_callbacks => "users/omniauth_callbacks", 
+    :registrations => "users/registrations"
+  }
   resources :users, :only => [:show, :update, :edit]
+
   resource :institutions, :only => [:create]#, :as => "institutions"
   
   resources :user_institutions, :only => [:create, :edit, :update, :destroy]
