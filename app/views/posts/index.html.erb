@@ -1,7 +1,6 @@
 <!-- NOTES TO SELF:
-1. i want to change this to forum index page instead of posts index page to eliminate the nesting under goals/posts => goals/1/posts
-2. figure out how to align the tabs in the form to the bottom so that the line with the top of the content box is even
-	2a. alternatively decrease height/padding of search box -->
+1. figure out how to align the tabs in the form to the bottom so that the line with the top of the content box is even
+	=> alternatively decrease height/padding of search box -->
 
 <h3>Forum</h3><br>
 <div class="row">
@@ -12,24 +11,45 @@
 					<%= render 'layouts/search' %>
 				<div class="panel-options">
 					<ul class="nav nav-tabs">
+							
+							<li class="active" id="all-forum-tab"><%= link_to "All", "#all-forum", :"data-toggle" => "tab" %></li>
 						<% Goal.all.each do |goal| %>
-							<li class="<%= "active" if goal.id == 1 %>"><%= link_to goal.name.capitalize, "##{goal.name}-forum", :"data-toggle" => "tab" %></li>
+							<li class="" id="<%= goal.name %>-forum-tab"><%= link_to goal.name.capitalize, "##{goal.name}-forum", :"data-toggle" => "tab" %></li>
 						<% end %>
+
 					</ul>
 				</div>
 			</div>
 			<div class="panel-body">
 				<div class="tab-content">
+					
+						<div class="tab-pane active" id="all-forum">
+							<div class="relevant-posts">
+								<ul>
+									<% Post.all.each do |post| %>
+										<%= render 'post', post: post %>
+									<% end %>
+								</ul>
+							</div>
+						</div>
+
 					<% Goal.all.each do |goal| %>
-						<div class="tab-pane<%= " active" if goal.id == 1 %>" id="<%= goal.name %>-forum">
-							<ul>
-								<% goal.posts.each do |post| %>
-									<%= render 'post', goal: goal, post: post %>
-								<% end %>
-							</ul>
-							<!-- goal_posts_path is no longer necessary!!! -->
+						<div class="tab-pane" id="<%= goal.name %>-forum">
+							<div class="relevant-posts">
+								<ul>
+									<% goal.posts.each do |post| %>
+										<%= render 'post', post: post %>
+									<% end %>
+								</ul>
+							</div>
 						</div>
 					<% end %>
+
+					<!-- search results div -->
+					<div id="search-results" class="hide">
+						
+					</div>
+
 				</div>
 			</div>
 		</div>

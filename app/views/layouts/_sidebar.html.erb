@@ -1,11 +1,10 @@
-<div class="sidebar-menu">
   <div class="sidebar-menu-inner">
     <header class="logo-env">
 
       <!-- logo -->
       <div class="logo">
         <h2 id="site-logo">
-          <%= link_to("Diversitech", root_path) %>
+          <%= link_to("ctrl-F", root_path) %>
         </h2>
       </div>
 
@@ -46,7 +45,7 @@
         </a>
       </li>
       <li>
-        <a href="<%= goal_posts_path(1) %>">
+        <a href="<%= posts_path %>">
           <i class="entypo-pencil"></i>
           <span class="title">Forum</span>
         </a>
@@ -85,17 +84,17 @@
         </a>
         <ul>
           <li>
-            <a href="<%= goal_path(1) %>">
+            <a href="<%= goal_path('code') %>">
               <span class="title">Code</span>
             </a>
           </li>
           <li>
-            <a href="<%= goal_path(2) %>">
+            <a href="<%= goal_path('career') %>">
               <span class="title">Career</span>
             </a>
           </li>
           <li>
-            <a href="<%= goal_path(3) %>">
+            <a href="<%= goal_path('advocacy') %>">
               <span class="title">Advocacy</span>
             </a>
           </li>
@@ -103,4 +102,3 @@
       </li>
     </ul>
   </div> <!-- END SIDEBARE-MENU-INNER -->
-</div> <!-- END SIDEBARE-MENU -->

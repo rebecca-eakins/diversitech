@@ -4,14 +4,14 @@
 	<div class="col-sm-8">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<div class="panel-title">Recent Forum Posts <%= link_to "(see all)", goal_posts_path(Goal.first) %></div>
+				<div class="panel-title">Recent Forum Posts</div>
 					<%= render 'layouts/search' %>
 			</div>
 			<div class="panel-body">
+			<%= link_to "See all", posts_path %>
 				<ul>
 					<% @goal.posts.limit(5).each do |post| %>
-						<li><h4><%= link_to post.content, goal_post_path(@goal, post) %></h4>
-						<p>Posted by <%= User.find(post.user_id).name %></p>
+						<%= render 'posts/post', post: post %>
 					<% end %>
 				</ul>
 			</div>

@@ -4,6 +4,17 @@ class SearchController < ApplicationController
   def show
     @search_term = params["search"]["search_term"].downcase
     search_results
+    respond_to do |f|
+      f.js {}
+      f.html {}
+    end
+  end
+
+  def clear
+    respond_to do |f|
+      f.js {}
+      f.html {redirect_to posts_path}
+    end
   end
 
 private
