@@ -12,5 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree ../../../vendor/assets/javascripts/.
-//= require_tree .
+//= require main-gsap
+//= require jquery-ui-1.10.3.minimal.min
+//= require bootstrap
+//= require joinable
+//= require resizeable
+//= require neon-api
+//= require neon-custom
+//= require neon-demo
+
+
+// require_tree ../../../vendor/assets/javascripts/.
+// require_tree .
