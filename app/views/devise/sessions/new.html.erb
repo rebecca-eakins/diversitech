@@ -1,19 +1,34 @@
-<body class="page-body login-page login-form-fall loaded login-form-fall-init" data-url="http://neon.dev">
+<body class="page-body login-page login-form-fall" data-url="http://neon.dev">
 
 <!-- This is needed when you send requests via Ajax -->
 
 <div class="login-container">
-  <div class="login-header login-caret" id="slim">
+  
+  <div class="login-header login-caret">
+    
     <div class="login-content">
-      <h1 class="logo">ctrl-F</h1>
-      <h2>Log in to the community</h2>
+      
+
+      <h1 class="logo">Diversitech</h2>
+      
+      <h2>Log in</h2>
       <p class="description">To help diversify tech in your area, enter your credentials below.</p>
     </div>
     
   </div>
   
+  <div class="login-progressbar">
+    <div></div>
+  </div>
+  
   <div class="login-form">
+    
     <div class="login-content">
+      
+      <div class="form-login-error">
+        <h3>Invalid login</h3>
+        <p>Please try again!</p>
+      </div>
       
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "form_login"}) do |f| %>
         <div class="form-group">
@@ -36,7 +51,7 @@
 
 
         <% if devise_mapping.rememberable? -%>
-          <div class="login field" id="remember-me">
+          <div class="login field">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>
@@ -44,7 +59,7 @@
 
 
         <div class="form-group">
-          <%= f.submit 'Log in', :class => 'btn btn-primary btn-block', id: 'loggins' %>
+          <%= f.submit 'Log In', :class => 'btn btn-primary btn-block btn-login' %>
           <% end %>
         </div>
 
@@ -55,7 +70,7 @@
         
         <div class="form-group">
           
-        <%= link_to "Log in with Github <i class='entypo-github'></i>".html_safe, '/users/auth/github', :class => "btn btn-default btn-lg btn-block btn-icon icon-left github-button", :method => :get %>
+        <%= link_to "Login with Github <i class='entypo-github'></i>".html_safe, '/users/auth/github', :class => "btn btn-default btn-lg btn-block btn-icon icon-left github-button", :method => :get %>
           
         </div>
 
@@ -65,9 +80,14 @@
         <%= render "devise/shared/links" %>
         
         <br />
-                
+        
+        <a href="#">ToS</a>  - <a href="#">Privacy Policy</a>
+        
       </div>
+      
     </div>
+    
   </div>
+  
 </div>  
 </body>
