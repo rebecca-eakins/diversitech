@@ -1,0 +1,63 @@
+<div class="panel panel-primary" data-collapsed="0">
+
+  <div class="panel-heading">
+    <div class="panel-title">New Post</div>
+  </div>
+  
+  <div class="panel-body">
+
+		<%= form_for @post, :html => {:class => "form-horizontal form-groups-bordered", :role => 'form'} do |f| %>
+
+			<div class="form-group">
+        <%= f.label :content, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_area :content, :class => "form-control", :id => "display-name" %>
+        </div>
+      </div>
+
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+
+			<div class="form-group">
+				<%= f.label :topics, :class => "col-sm-3 control-label" %>
+				<div class="col-sm-5">
+					<%= f.collection_check_boxes :topics, Topic.all, :id, :name, :item_wrapper_class => 'checkbox_container' %>
+					<!-- <%#= f.input :roles, :collection => valid_roles, :label_method => :last, :value_method => :first, :as => :check_boxes, :item_wrapper_class => 'inline'  %> THIS IS A POTENTIAL SIMPLE FORM WAY -->
+					<br>
+					<%= f.fields_for Topic.new do |t| %>
+						<%= t.label :name, "Create a new topic:" %>
+						<%= t.text_field :name %>
+			    <% end %>
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-5">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox">Checkbox 1
+						</label>
+					</div>
+					
+					<div class="checkbox">
+						<label>
+							<input type="checkbox">Checkbox 2
+						</label>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-5">
+          <%= f.submit :class => "btn btn-default" %>
+        </div>
+      </div>
+
+		<% end %>
+	</div>
+</div>
