@@ -2,8 +2,8 @@
 1. figure out how to align the tabs in the form to the bottom so that the line with the top of the content box is even
 	=> alternatively decrease height/padding of search box -->
 
-<h3>Forum</h3><br>
-<div class="row">
+<h3>Forum<%= link_to "New Post", new_post_path, :class => 'btn btn-default right' %></h3><br>
+<div class="row clearfix">
 	<div class="col-sm-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
