@@ -33,109 +33,21 @@
           <div class="tab-pane active" id="following">
             <h3>People you follow</h3>
             <% @targets.each do |target| %>
-              <div class="member-entry">
-
-              <% if target.image %>
-                <a href="extra-timeline.html" class="member-img">
-                  <%= image_tag(target.image, :class => 'img-rounded') %>
-                  <% end %>
-                  <i class="entypo-forward"></i>
-                </a>
-                
-                <div class="member-details">
-                  <h4>
-                    <%= link_to target.name, user_path(target) %>
-                  </h4>
-                  
-                  <!-- Details with Icons -->
-                  <div class="row info-list">
-                    
-                    <div class="col-sm-4">
-                      <i class="entypo-briefcase"></i>
-                      Job Title at <a href="#">Workplace</a>
-                    </div>
-                    
-                    <div class="clear"></div>
-                    
-                    <div class="col-sm-4">
-                      <i class="entypo-location"></i>
-                      <a href="#">Somewhere, USA</a>
-                    </div>          
-                  </div>
-                </div>   
-              </div>
+              
+              <%= render partial: 'connections/detail', locals: {user: target} %>
+              
             <% end %>
           </div>
           <div class="tab-pane" id="followers">
-            <h3>Your Followers</h3>
+            <h3>Your followers</h3>
             <% @followers.each do |follower| %>
-              <div class="member-entry">
-
-                  <% if follower.image %>
-                <a href="extra-timeline.html" class="member-img">
-                  <%= image_tag(follower.image, :class => 'img-rounded') %>
-                  <% end %>
-                  <i class="entypo-forward"></i>
-                </a>
-                
-                <div class="member-details">
-                  <h4>
-                    <%= link_to follower.name, user_path(follower) %>
-                  </h4>
-                  
-                  <!-- Details with Icons -->
-                  <div class="row info-list">
-                    
-                    <div class="col-sm-4">
-                      <i class="entypo-briefcase"></i>
-                      Job Title at <a href="#">Workplace</a>
-                    </div>
-                    
-                    <div class="clear"></div>
-                    
-                    <div class="col-sm-4">
-                      <i class="entypo-location"></i>
-                      <a href="#">Somewhere, USA</a>
-                    </div>          
-                  </div>
-                </div>   
-              </div>
+              <%= render partial: 'connections/detail', locals: {user: follower} %>
             <% end %>
           </div>
           <div class="tab-pane" id="others">
             <h3>Inspiring people in the community</h3>
             <% @users_to_view.each do |user| %>
-              <div class="member-entry">
-
-                  <% if user.image %>
-                <a href="extra-timeline.html" class="member-img">
-                  <%= image_tag(user.image, :class => 'img-rounded') %>
-                  <% end %>
-                  <i class="entypo-forward"></i>
-                </a>
-                
-                <div class="member-details">
-                  <h4>
-                    <%= link_to user.name, user_path(user) %>
-                  </h4>
-                  
-                  <!-- Details with Icons -->
-                  <div class="row info-list">
-                    
-                    <div class="col-sm-4">
-                      <i class="entypo-briefcase"></i>
-                      Job Title at <a href="#">Workplace</a>
-                    </div>
-                    
-                    <div class="clear"></div>
-                    
-                    <div class="col-sm-4">
-                      <i class="entypo-github"></i>
-                      <a href="#">Somewhere, USA</a>
-                    </div>          
-                  </div>
-                </div>   
-              </div>
+              <%= render partial: 'connections/detail', locals: {user: user} %>
             <% end %>>
           </div>
         </div>

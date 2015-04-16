@@ -59,6 +59,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def feature_image
+    if self.image == nil
+      "default.png"
+    else
+      self.image
+    end
+  end
+
   def first_name
     self.name.split(" ").first
   end
