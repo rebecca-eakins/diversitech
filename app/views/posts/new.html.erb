@@ -18,41 +18,53 @@
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 
 			<div class="form-group">
-				<%= f.label :topics, :class => "col-sm-3 control-label" %>
+				<%= f.label :goal, :class => "col-sm-3 control-label" %>
 				<div class="col-sm-5">
-					<%= f.collection_check_boxes :topics, Topic.all, :id, :name, :item_wrapper_class => 'checkbox_container' %>
-					<!-- <%#= f.input :roles, :collection => valid_roles, :label_method => :last, :value_method => :first, :as => :check_boxes, :item_wrapper_class => 'inline'  %> THIS IS A POTENTIAL SIMPLE FORM WAY -->
-					<br>
-					<%= f.fields_for Topic.new do |t| %>
-						<%= t.label :name, "Create a new topic:" %>
-						<%= t.text_field :name %>
-			    <% end %>
+					<% Goal.all.each do |goal| %>
+						<div class="radio">
+							<label>
+								<input type="radio", name="post[goal_id]" value="<%= goal.id %>"><%= goal.name.capitalize %>
+						  </label>
+					  </div>
+					<% end %>
 				</div>
 			</div>
 
-
+<!-- 			<div class="form-group">
+				<%#= f.label :topics, :class => "col-sm-3 control-label" %>
+				<div class="col-sm-5">
+					<%#= f.collection_check_boxes :topics, Topic.all, :id, :name, :item_wrapper_class => 'checkbox_container' %>
+					<%#= f.input :roles, :collection => valid_roles, :label_method => :last, :value_method => :first, :as => :check_boxes, :item_wrapper_class => 'inline'  %> THIS IS A POTENTIAL SIMPLE FORM WAY
+					<br>
+					<%#= f.fields_for Topic.new do |t| %>
+						<%#= t.label :name, "Create a new topic:" %>
+						<%#= t.text_field :name %>
+			    <%# end %>
+				</div>
+			</div> -->
 
 			<div class="form-group">
-				<div class="col-sm-offset-3 col-sm-5">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">Checkbox 1
-						</label>
-					</div>
-					
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">Checkbox 2
-						</label>
-					</div>
+				<%= f.label :topics, :class => "col-sm-3 control-label" %>
+				<div class="col-sm-5">
+					<% Topic.all.each do |topic| %>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox", name="post[topics][]" value="<%= topic.id %>"><%= topic.name.capitalize %>
+						  </label>
+					  </div>
+					<% end %>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox">Other
+						  </label>
+						<%= f.fields_for Topic.new do |t| %>
+							<%= t.text_field :name %>
+				    <% end %>
+					  </div>
 				</div>
 			</div>
-
-
-
-
-
-      <div class="form-group">
+			
+			<div class="form-group">
         <div class="col-sm-offset-3 col-sm-5">
           <%= f.submit :class => "btn btn-default" %>
         </div>

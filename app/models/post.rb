@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
   default_scope {order('posts.created_at DESC')}
   scope :from_users_followed_by, lambda { |user| followed_by(user)} # DOESN'T QUIIIITE WORK YET
 
+  accepts_nested_attributes_for :topics
+
   private
     def self.followed_by(user)
       following_ids = %(SELECT target_id FROM connections

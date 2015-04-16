@@ -13,13 +13,24 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+    # "post"=>{"content"=>"", "user_id"=>"113", ":topics"=>["6"], "topic"=>{"name"=>"lala"}},
+  def create
+    @post = Post.create(post_params)
+
+    params[:post][:topics].each do |topic|
+      @post.topics << Topic.find(topic)
+    end
+
+    @post.topics.create(name: params[:post][:topic][:name]) if params[:post][:topic][:name] != ""
+
+    redirect_to posts_path
+
+  end
+
   def edit
   end
 
   def update
-  end
-
-  def create
   end
 
   def destroy
@@ -29,6 +40,10 @@ class PostsController < ApplicationController
 
   def find_post
     Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:user_id, :content, :topics, :topic, :goal_id)
   end
  
 end
