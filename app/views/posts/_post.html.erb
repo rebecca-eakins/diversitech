@@ -1,2 +1,5 @@
 <li><h4><%= link_to post.content, post_path(post) %></h4>
-<p>Posted by <%= link_to post.user.name, post.user %> on <%= post.created_at.strftime("%m/%d/%y") %></p>
+<p>
+	Posted by <%= link_to post.user.name, post.user %> on <%= post.created_at.strftime("%m/%d/%y") %>
+	<%= link_to "Edit", edit_post_path(post) if post.user_id == current_user.id %>
+</p>

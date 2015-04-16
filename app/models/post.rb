@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   has_many :topics, through: :post_topics
 
   validates :content, presence: true
+  validates :goal_id, presence: true
 
   default_scope {order('posts.created_at DESC')}
   scope :from_users_followed_by, lambda { |user| followed_by(user)} # DOESN'T QUIIIITE WORK YET
