@@ -1,1 +1,5 @@
-<%= render 'post_form' %>
+<% if @post.user_id == current_user.id %>
+	<%= render 'post_form' %>
+<% else %>
+	<h4>You are not authorized to view this page, sorry!</h4>
+<% end %>
