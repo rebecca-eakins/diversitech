@@ -7,10 +7,19 @@
 				<div class="panel-title"><%= link_to "Network Activity", connections_path, :class => "dash-link" %></div>
 			</div>
 			<div class="panel-body">
-				<p>[Placeholder] Ellen accepted your mentorship request at XX:XX on XX/XX</p>
+				<ul class='newsfeed'>
+					<% Newsfeed.new(current_user).display_feed.each do |event, time, klass| %>
+						<% if klass == 'connection' %>
+							<li><i class="entypo-user"></i><%= event.follower.name %> followed you on <%= event.created_at.strftime("%m/%d/%y") %> at <%= event.created_at.strftime("%l:%M %p") %></li>
+						<% else %>
+							<li><i class="entypo-pencil"></i><%= event.user.name %> added a <%= link_to "new post", post_path(event.id) %> on <%= event.created_at.strftime("%m/%d/%y") %> at <%= event.created_at.strftime("%l:%M %p") %></li>
+						<% end %>
+					<% end %>
+				</ul>
+				<!-- <p>[Placeholder] Ellen accepted your mentorship request at XX:XX on XX/XX</p>
 				<p>[Placeholder] Your connection Amanda posted a new resource filed under Career at XX:XX on XX/XX</p>
 				<p>[Placeholder] 23 people in your network have saved "How to be a good team member" to read for later</p>
-				<p>[Placeholder] Carly Smith invited you to Chicks on Rails meetup</p>
+				<p>[Placeholder] Carly Smith invited you to Chicks on Rails meetup</p> -->
 			</div>
 		</div>
 	</div>
