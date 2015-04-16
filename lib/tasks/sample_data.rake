@@ -17,8 +17,12 @@ def make_users
     name = Faker::Name.name
     email = Faker::Internet.email
     password = "password123"
-    current_zip = Faker::Address.zip_code.slice(0,5)
-    User.create!(name: name, email: email, password: password, password_confirmation: password, current_zip: current_zip)
+    bio = Faker::Lorem.paragraph
+    facebook = Faker::Internet.domain_name
+    twitter = Faker::Internet.domain_name
+    github = Faker::Internet.domain_name
+    location_id = rand(Location.all.count)
+    User.create!(name: name, email: email, password: password, password_confirmation: password, bio: bio, facebook: facebook, twitter: twitter, github: github, location_id: location_id)
   end
 end
 
@@ -46,7 +50,7 @@ def make_institutions
 end
 
 def make_resources
-  resource_types = ["course", "book", "blog", "tutorial", "meetup", "conference", "deal"]
+  resource_types = %w(book blog tutorial meetup conference course)
   30.times do |r|
     title = Faker::App.name
     description = Faker::Hacker.say_something_smart
