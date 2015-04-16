@@ -9,13 +9,16 @@ class UsersController < ApplicationController
     else
       @connection = Connection.new
     end
+
+    list_institutions
+    
   end
 
   def edit
     @inst_id = session[:institution]["id"] if session[:institution]
 
     if current_user.id == params[:id].to_i
-      @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
+      list_institutions
     else
       flash[:alert] = "You are not authorized to view that page, sorry!"
       redirect_to user_path(params[:id])
@@ -36,6 +39,12 @@ class UsersController < ApplicationController
 
   def item_params
     params.require(:user).permit(:email, :name, :image, :current_zip)
+  end
+
+  def list_institutions
+    @institutions_array = Institution.all.collect do |inst|
+       [inst.name, inst.id]
+      end.sort
   end
   
 end

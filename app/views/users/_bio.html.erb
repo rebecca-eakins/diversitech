@@ -1,0 +1,27 @@
+<section class="profile-feed col-1">
+  <div class="panel panel-primary" data-collapsed="0">
+    <div class="panel-heading">
+      <div class="panel-title">Professional Experience</div>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <% @user.institutions.where(:user_institutions => { :institution_type => "work" }).each do |institution| %>
+          <li><%= institution.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-primary" data-collapsed="0">
+    <div class="panel-heading">
+      <div class="panel-title">Education</div>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <% @user.institutions.where(:user_institutions => { :institution_type => "school" }).each do |institution| %>
+          <li><%= institution.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>
