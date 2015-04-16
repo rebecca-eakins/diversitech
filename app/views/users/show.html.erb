@@ -23,21 +23,21 @@
               <strong>
                 <a href="#"><%= @user.name %></a>
               </strong>
-                <span><a href="#">Job @ Workplace</a></span>
+                <span><a href="#"><%= @user.latest_institution_name %></a></span>
               </div>
             </li>
             
             <li>
               <div class="profile-stat">
                 <h3><%= @user.followed_by.count %></h3>
-                <span><a href="#">followers</a></span>
+                <span><%= link_to "followers", connections_path %></span>
               </div>
             </li>
             
             <li>
               <div class="profile-stat">
                 <h3><%= @user.following.count %></h3>
-                <span><a href="#">following</a></span>
+                <span><%= link_to "following", connections_path %></span>
               </div>
             </li>
           </ul>
@@ -69,13 +69,13 @@
               <li>
                 <a href="#">
                   <i class="entypo-location"></i>
-                  Somewhere, USA
+                  <%= @user.formatted_location %>
                 </a>
               </li>
               <li>
                 <a href="#">
                   <i class="entypo-suitcase"></i>
-                  Works as <span>Job @ Workplace</span>
+                  <%= @user.latest_institution_name %>
                 </a>
               </li>
             </ul>

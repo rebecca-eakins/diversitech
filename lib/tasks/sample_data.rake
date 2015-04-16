@@ -21,7 +21,7 @@ def make_users
     facebook = Faker::Internet.domain_name
     twitter = Faker::Internet.domain_name
     github = Faker::Internet.domain_name
-    location_id = rand(Location.all.count)
+    location_id = rand(1..Location.all.count)
     User.create!(name: name, email: email, password: password, password_confirmation: password, bio: bio, facebook: facebook, twitter: twitter, github: github, location_id: location_id)
   end
 end
