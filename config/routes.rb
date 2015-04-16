@@ -21,7 +21,13 @@ Rails.application.routes.draw do
 
   # resources :posts, :only => [:index, :show]
   get 'forum' => 'posts#index', :as => 'posts'
-  get 'forum/:id' => 'posts#show', :as => 'post'
+  post 'forum' => 'posts#create', :as => 'post'
+  get 'forum/:id' => 'posts#show'
+  patch 'forum/:id' => 'posts#update'
+  delete 'forum/:id' => 'posts#destroy'
+  get 'forum/new' => 'posts#new', :as => 'new_post'
+  get 'forum/:id/edit' => 'posts#edit', :as => 'edit_post'
+
   
   
   # NOTES ON PROFILES & AUTHOR/AUTHENTICATION
