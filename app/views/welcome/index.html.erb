@@ -10,9 +10,9 @@
 				<ul class='newsfeed'>
 					<% Newsfeed.new(current_user).display_feed.each do |event, time, klass| %>
 						<% if klass == 'connection' %>
-							<li><i class="entypo-user"></i><%= event.follower.name %> followed you on <%= event.created_at.strftime("%m/%d/%y") %> at <%= event.created_at.strftime("%l:%M %p") %></li>
+							<li><i class="entypo-user"></i><%= link_to event.follower.name, event.follower %> followed you on <%= event.created_at.strftime("%m/%d/%y") %> at <%= event.created_at.strftime("%l:%M %p") %></li>
 						<% else %>
-							<li><i class="entypo-pencil"></i><%= event.user.name %> added a <%= link_to "new post", post_path(event.id) %> on <%= event.created_at.strftime("%m/%d/%y") %> at <%= event.created_at.strftime("%l:%M %p") %></li>
+							<li><i class="entypo-pencil"></i><%= link_to event.user.name, event.user %> added a <%= link_to "new post", post_path(event.id) %> on <%= event.created_at.strftime("%m/%d/%y") %> at <%= event.created_at.strftime("%l:%M %p") %></li>
 						<% end %>
 					<% end %>
 				</ul>
