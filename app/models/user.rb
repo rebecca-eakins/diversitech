@@ -105,4 +105,14 @@ class User < ActiveRecord::Base
     User.find_by_sql([following_query, id])
   end
 
+  # NEWSFEED METHODS
+
+  def recent_follows
+    self.followers.limit(5)
+  end
+
+  def recent_posts_from_targets
+    self.feed.limit(5)
+  end
+
 end
