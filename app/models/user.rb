@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
   def latest_institution_name
 
     inst = self.user_institutions.order("end_date DESC").first
-    binding.pry
     if !!inst
       Institution.find(inst.institution_id).name
     else
