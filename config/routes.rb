@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :connections, only: [:index, :create, :update]
   # resources :goals, :only => [:show]
   get 'goals/:name' => 'goals#show', :as => 'goal'
+  resources :locations, only: [:index, :show]
 
   # resources :posts, :only => [:index, :show]
   get 'forum' => 'posts#index', :as => 'posts'

@@ -32,8 +32,19 @@
       <% end %>
             
       <div class="col-sm-4">
-        <i class="entypo-location"></i>
-        <%= user.formatted_location %>
+
+      <% if user.location %>
+        <a href=<%= location_path(id: user.location_id) %>>
+          <i class="entypo-location"></i>
+          <%= user.formatted_location %>
+        </a>
+        <% else %>
+          <a href=<%= locations_path %>>
+            <i class="entypo-location"></i>
+            <%= user.formatted_location %>
+          </a>
+        <% end %>
+
       </div> 
 
       <% if user.github %>
