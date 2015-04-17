@@ -18,12 +18,17 @@ class PostsController < ApplicationController
     @post = Post.create(post_params)
     if @post.persisted?
 
-      params[:post][:topics].each do |topic|
-        @post.topics << Topic.find(topic)
+      if params[:post][:topics]
+        params[:post][:topics].each do |topic|
+          @post.topics << Topic.find(topic)
+        end
       end
 
-      @post.topics.create(name: params[:post][:topic][:name]) if params[:post][:topic][:name] != ""
-      redirect_to posts_path
+      if params[:post][:topics]
+        @post.topics.create(name: params[:post][:topic][:name]) if params[:post][:topic][:name] != ""
+        redirect_to posts_path
+      end
+      redirect_to :back
     else
       flash.now[:goal_error] = "Please select a goal." if !@post.goal_id
       flash.now[:content_error] = "Please include some text before creating a post." if @post.content == ""
@@ -55,7 +60,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:user_id, :content, :topics, :topic, :goal_id)
+    params.require(:post).permit(:user_id, :content, :topics, :topic, :goal_id, :parent_post_id)
   end
  
 end

@@ -20,6 +20,7 @@
 //= require neon-api
 //= require neon-custom
 //= require neon-demo
+//= require_tree . 
+		// becca added this back in for custom javascript in show-post.js
 
 // require_tree ../../../vendor/assets/javascripts/.
-// require_tree .

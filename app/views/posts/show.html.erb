@@ -10,9 +10,10 @@
 				<div class="tab-content">
 					<%= render @post %>
 					<%= link_to "| Delete", post_path(@post), :method => :delete if @post.user_id == current_user.id %>
+					<%= link_to "Add Comment", "#", :class => "right new-comment-link", :"data-id" => @post.id %>
 				</div>
 			</div>
 		</div>
-		Add Comment
+			<%= render 'child_post_form', :post => Post.new, :parent_post_id => @post.id, :parent_post_goal => @post.goal_id %>
 	</div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416222434) do
+ActiveRecord::Schema.define(version: 20150417152124) do
 
   create_table "connections", force: :cascade do |t|
     t.integer  "follower_id"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20150416222434) do
     t.string   "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "post_links", force: :cascade do |t|
+    t.integer  "parent_post_id"
+    t.integer  "child_post_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "post_topics", force: :cascade do |t|

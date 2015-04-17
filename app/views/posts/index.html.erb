@@ -26,7 +26,9 @@
 						<div class="tab-pane active" id="all-forum">
 							<div class="relevant-posts">
 									<% Post.all.each do |post| %>
-										<%= render 'post', post: post %>
+										<div class="panel panel-primary post-index">
+											<%= render 'post', post: post %>
+										</div>
 									<% end %>
 							</div>
 						</div>
@@ -36,7 +38,9 @@
 							<div class="relevant-posts">
 								<ul>
 									<% goal.posts.each do |post| %>
-										<%= render 'post', post: post %>
+										<div class="panel panel-primary post-index">
+											<%= render 'post', post: post %>
+										</div>
 									<% end %>
 								</ul>
 							</div>

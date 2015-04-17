@@ -1,0 +1,17 @@
+<div class="panel panel-primary hide" data-collapsed="0" id="new-comment-for-<%= parent_post_id %>">
+  
+  <div class="panel-body">
+		<div class="tab-content">
+		<%= form_for post, :html => {:class => "form-horizontal form-groups-bordered", :role => 'form'} do |f| %>
+
+        <%= f.text_area :content, :class => "form-control" %>
+        <%= f.submit :class => "btn btn-default" %>
+      </div>
+
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<%= f.hidden_field :parent_post_id, :value => parent_post_id %>
+			<%= f.hidden_field :goal_id, :value => parent_post_goal %>
+
+		<% end %>
+	</div>
+</div>
