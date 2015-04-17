@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_post, :only => [:show, :edit, :update, :destroy]
+  before_action :find_post, :only => [:show, :edit, :update]
 
   def index
     #redirect_to tab self-selected by user as primary interest.
@@ -43,8 +43,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  # def destroy
-  # end
+  def destroy
+    find_post.destroy
+    redirect_to posts_path
+  end
 
   private
 

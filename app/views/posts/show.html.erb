@@ -8,11 +8,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="tab-content">
-					<h3><%= @post.content %></h3>
-					<p>
-						Posted by <%= link_to @post.user.name, @post.user %> on <%= @post.created_at.strftime("%m/%d/%y") %>
-						<%= link_to "Edit", edit_post_path(@post) if @post.user_id == current_user.id %>
-					</p>
+					<%= render @post %>
+					<%= link_to "| Delete", post_path(@post), :method => :delete if @post.user_id == current_user.id %>
 				</div>
 			</div>
 		</div>
