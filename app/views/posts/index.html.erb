@@ -25,11 +25,9 @@
 					
 						<div class="tab-pane active" id="all-forum">
 							<div class="relevant-posts">
-								<ul>
 									<% Post.all.each do |post| %>
 										<%= render 'post', post: post %>
 									<% end %>
-								</ul>
 							</div>
 						</div>
 

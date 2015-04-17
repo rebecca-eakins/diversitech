@@ -193,12 +193,9 @@ ul.newsfeed li {
   text-indent: -1em;
 }
 
-li.post {
-  
-}
-
-li.connection {
-
+div.post-index {
+  padding: 5px 15px 5px 15px;
+  margin-bottom: 10px;
 }
   
 /*****************************************************************************/
