@@ -13,6 +13,10 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :topics
 
+  def child_posts
+    Post.where("parent_post_id == ?", self.id)
+  end
+
   private
     def self.followed_by(user)
       following_ids = %(SELECT target_id FROM connections
