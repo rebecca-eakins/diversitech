@@ -101,6 +101,14 @@ class User < ActiveRecord::Base
     Connection.find_by(follower_id: follower.id, target_id: target.id).update_column(:connection_status, "unfollowed")
   end
 
+  def yield_connection_with(user)
+    if Connection.found?(self, user)
+      Connection.find_by(follower_id: self.id, target_id: user.id)
+    else
+      Connection.new
+    end
+  end
+
   # NETWORK HELPERS
 
   def following

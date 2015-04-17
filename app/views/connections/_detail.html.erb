@@ -16,13 +16,38 @@
         <i class="entypo-briefcase"></i>
         <%= user.latest_institution_name %>
       </div>
+    
+      <% if user.facebook %>
+        <div class="col-sm-4">
+          <i class="entypo-facebook"></i>
+          <%= link_to "Facebook", user.facebook, target: "_blank" %>
+        </div>
+      <% end %>
       
-      <div class="clear"></div>
-      
+      <% if user.twitter %>
+        <div class="col-sm-4">
+          <i class="entypo-twitter"></i>
+          <%= link_to "Twitter", user.twitter, target: "_blank" %>
+        </div>
+      <% end %>
+            
       <div class="col-sm-4">
         <i class="entypo-location"></i>
         <%= user.formatted_location %>
-      </div>          
+      </div> 
+
+      <% if user.github %>
+        <div class="col-sm-4">
+          <i class="entypo-github"></i>
+          <%= link_to "Github", user.github, target: "_blank" %>
+        </div>
+      <% end %>
+
+      <div class="col-sm-4">
+        <i class="entypo-user-add"></i>
+        <a class="btn btn-default">placeholder for follow</a>
+      </div>
+
     </div>
   </div>   
 </div>
