@@ -31,13 +31,13 @@
       <div class="form-group">
         <%= f.label :twitter, "Twitter", :class => "col-sm-3 control-label" %>
         <div class="col-sm-5">
-          <%= f.text_area :twitter, :class => "form-control", :id => "twitter" %>
+          <%= f.url_field :twitter, :class => "form-control", :id => "twitter" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :github, "Github", :class => "col-sm-3 control-label" %>
         <div class="col-sm-5">
-          <%= f.text_area :github, :class => "form-control", :id => "github" %>
+          <%= f.url_field :github, :class => "form-control", :id => "github" %>
         </div>
       </div>
 
@@ -70,7 +70,6 @@
       <div class="form-group">
         <%= ui_form.label :institution_type, :class => "col-sm-3 control-label" %>
         <div class="col-sm-5">
-          <%= ui_form.text_field :institution_type, :class => "form-control" %>
           <div class="radio">
             <label>
               <input type="radio" name="institution_type" id="optionsRadios1" value="school" <%= "checked" if ui.institution_type == "school" %> >School
