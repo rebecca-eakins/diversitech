@@ -16,9 +16,11 @@
 		</div>
 		<%= render 'child_post_form', :post => Post.new, :parent_post_id => @post.id, :parent_post_goal => @post.goal_id %>
 		
-		<% @post.child_posts.each do |post| %>
-			<%= render post %>
-		<% end %>
+		<div class="panel panel-primary post-index subpost">
+			<% @post.child_posts.each do |post| %>
+				<%= render post %>
+			<% end %>
+		</div>
 
 
 	</div>

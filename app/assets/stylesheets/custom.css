@@ -197,6 +197,10 @@ div.post-index {
   padding: 5px 15px 5px 15px;
   margin-bottom: 10px;
 }
+
+div.subpost {
+  margin-left: 40px;
+}
   
 /*****************************************************************************/
 /*
