@@ -1,0 +1,7 @@
+<%= form_for Search.new, :url => connection_results_path, :role => 'form', :method => 'get', :remote => true, :html => { :class => "search-form-full" } do |f| %>
+    <div class="form-group">
+    <%= f.text_field :search_term, :id => "search-input", :class => "form-control", label: false,  placeholder: 'Search connections...', :class => "form-control" %>
+    <i class="entypo-search"></i>
+
+    </div>
+<% end %>
