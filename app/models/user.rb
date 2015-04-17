@@ -75,9 +75,9 @@ class User < ActiveRecord::Base
 
   def feed(goal = 'all')
     if goal == 'all'
-      Post.from_users_followed_by(self)
+      Post.from_users_followed_by(self).where(:posts => {:parent_post_id => nil})
     else
-      Post.from_users_followed_by(self).where(goal_id: Goal.find_by(name: goal))
+      Post.from_users_followed_by(self).where(:posts => {:goal_id => Goal.find_by(name: goal), :parent_post_id => nil})
     end
   end
 
