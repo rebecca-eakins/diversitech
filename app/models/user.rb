@@ -43,16 +43,17 @@ class User < ActiveRecord::Base
   # INSTANCE METHODS
 
   def latest_institution_name
-    inst_id = self.user_institutions.order("end_date DESC").first.institution_id
-    if !inst_id.nil?
-      Institution.find(inst_id).name
+
+    inst = self.user_institutions.order("end_date DESC").first
+    if !!inst
+      Institution.find(inst.institution_id).name
     else
       "Tech Community Member"
     end
   end
 
   def formatted_location
-    if self.location
+    if !!self.location
       "#{self.location.city}, #{self.location.state}"
     else
       "Somewhere, USA"
@@ -60,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def feature_image
-    if self.image == nil
+    if !self.image # If the image is nil, use the default!
       "default.png"
     else
       self.image
@@ -98,6 +99,14 @@ class User < ActiveRecord::Base
   def unfollow!(target)
     follower = self
     Connection.find_by(follower_id: follower.id, target_id: target.id).update_column(:connection_status, "unfollowed")
+  end
+
+  def yield_connection_with(user)
+    if Connection.found?(self, user)
+      Connection.find_by(follower_id: self.id, target_id: user.id)
+    else
+      Connection.new
+    end
   end
 
   # NETWORK HELPERS

@@ -1,0 +1,7 @@
+<h3><%= @location.city %></h3>
+
+<ul>
+  <% @location.users_in_same_city.each do |user| %>
+    <li><%= link_to user.name, user_path(user) %></li>
+  <% end %>
+</ul>

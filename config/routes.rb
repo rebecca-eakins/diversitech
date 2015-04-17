@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get '/about' => 'welcome#about'
-  get 'search_results' => 'search#show'
+  get 'search_results' => 'search#show_posts'
+  get 'connection_results' => 'search#show_users'
   get 'clear' => 'search#clear'
 
   devise_for :users, :controllers => { 
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   resources :connections, only: [:index, :create, :update]
   # resources :goals, :only => [:show]
   get 'goals/:name' => 'goals#show', :as => 'goal'
+  resources :locations, only: [:index, :show]
 
   # resources :posts, :only => [:index, :show]
   get 'forum' => 'posts#index', :as => 'posts'

@@ -67,10 +67,17 @@
           <div class="col-sm-offset-2 col-sm-10">
             <ul class="user-details">
               <li>
-                <a href="#">
+                <% if @user.location %>
+                <a href=<%= location_path(id: @user.location_id) %>>
                   <i class="entypo-location"></i>
                   <%= @user.formatted_location %>
                 </a>
+                <% else %>
+                  <a href=<%= locations_path %>>
+                    <i class="entypo-location"></i>
+                    <%= @user.formatted_location %>
+                  </a>
+                <% end %>
               </li>
               <li>
                 <a href="#">

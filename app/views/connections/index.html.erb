@@ -5,14 +5,7 @@
   
   <div class="col-md-3 col-sm-5">
     
-    <form method="get" role="form" class="search-form-full">
-    
-      <div class="form-group">
-        <input type="text" class="form-control" name="s" id="search-input" placeholder="Search..." />
-        <i class="entypo-search"></i>
-      </div>
-      
-    </form>
+    <%= render 'layouts/search_users' %>
     
   </div>
 </div>
@@ -24,7 +17,7 @@
             <li class="active"><a href="#following" data-toggle="tab">Following</a></li>
             <li class=""><a href="#followers" data-toggle="tab">Followers</a></li>
             <li class=""><a href="#others" data-toggle="tab">Others in the community</a></li>
-
+            <li class="hidden" id="search-tab"><a href="#search" data-toggle="tab">Search Results</a></li>
           </ul>
         </div>
 
@@ -49,6 +42,11 @@
             <% @users_to_view.each do |user| %>
               <%= render partial: 'connections/detail', locals: {user: user} %>
             <% end %>>
+          </div>
+          <div class="tab-pane" id="search">
+            <div id="search-results">
+              <h3>PEOPLE YOU ARE CREEPING</h3>
+            </div>
           </div>
         </div>
       </div>

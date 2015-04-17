@@ -1,0 +1,10 @@
+<div id="search-results">
+  
+  <h3>Found <%= @user_results.count %> matching users. | <%= link_to "Clear results", clear_path, :remote => true %></h3>
+
+
+  <% @user_results.each do |search| %>
+    <%= render partial: 'connections/detail', locals: {user: search} %>
+  <% end %>
+
+</div>
