@@ -43,16 +43,18 @@ class User < ActiveRecord::Base
   # INSTANCE METHODS
 
   def latest_institution_name
-    inst_id = self.user_institutions.order("end_date DESC").first.institution_id
-    if !inst_id.nil?
-      Institution.find(inst_id).name
+
+    inst = self.user_institutions.order("end_date DESC").first
+    binding.pry
+    if !!inst
+      Institution.find(inst.institution_id).name
     else
       "Tech Community Member"
     end
   end
 
   def formatted_location
-    if self.location
+    if !!self.location
       "#{self.location.city}, #{self.location.state}"
     else
       "Somewhere, USA"
@@ -60,7 +62,7 @@ class User < ActiveRecord::Base
   end
 
   def feature_image
-    if self.image == nil
+    if !self.image # If the image is nil, use the default!
       "default.png"
     else
       self.image
