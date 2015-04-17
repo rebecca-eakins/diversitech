@@ -61,7 +61,12 @@
 					<%= link_to "See all", posts_path %>
 					<% %w[all code career advocacy].each do |goal| %>
 						<div class="tab-pane active" id="<%= goal %>-forum">
-							<%= render :partial => 'posts/post', :collection => current_user.feed(goal) %>
+							<%#= render :partial => 'posts/post', :collection => current_user.feed(goal) %>
+							<% current_user.feed(goal).each do |post| %>
+								<div class="panel panel-primary post-index">
+									<%= render 'posts/post', post: post %>
+								</div>
+							<% end %>
 						</div>
 					<% end %>
 				</div>

@@ -9,11 +9,9 @@
 			</div>
 			<div class="panel-body">
 			<%= link_to "See all", posts_path %>
-				<ul>
-					<% @goal.posts.limit(5).each do |post| %>
-						<%= render 'posts/post', post: post %>
-					<% end %>
-				</ul>
+				<% @goal.posts.limit(5).each do |post| %>
+					<%= render 'posts/post', post: post %>
+				<% end %>
 			</div>
 		</div>
 	</div>

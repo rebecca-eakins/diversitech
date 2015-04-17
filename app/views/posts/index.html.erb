@@ -36,13 +36,11 @@
 					<% Goal.all.each do |goal| %>
 						<div class="tab-pane" id="<%= goal.name %>-forum">
 							<div class="relevant-posts">
-								<ul>
-									<% goal.posts.where(:posts => {:parent_post_id => nil}).each do |post| %>
-										<div class="panel panel-primary post-index">
-											<%= render 'post', post: post %>
-										</div>
-									<% end %>
-								</ul>
+								<% goal.posts.where(:posts => {:parent_post_id => nil}).each do |post| %>
+									<div class="panel panel-primary post-index">
+										<%= render 'post', post: post %>
+									</div>
+								<% end %>
 							</div>
 						</div>
 					<% end %>
