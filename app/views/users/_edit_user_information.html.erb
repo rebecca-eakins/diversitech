@@ -1,7 +1,3 @@
-<h3><%= flash[:new_user] %></h3>
-
-<!-- User Information Form -->
-
 <div class="panel panel-primary" data-collapsed="0">
 
   <div class="panel-heading">
@@ -19,12 +15,31 @@
         </div>
       </div>
 
-<!--       <div class="form-group">
-        <#%= f.label :current_zip, "Current Zip Code", :class => "col-sm-3 control-label" %>
+      <div class="form-group">
+        <%= f.label :bio, "Biography", :class => "col-sm-3 control-label" %>
         <div class="col-sm-5">
-          <#%= f.text_field :current_zip, :class => "form-control", :id => "current_zip" %>
+          <%= f.text_area :bio, :class => "form-control", :id => "bio", :value => @user.bio %>
         </div>
-      </div> -->
+      </div>
+
+      <div class="form-group">
+        <%= f.label :facebook, "Facebook", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.url_field :facebook, :class => "form-control", :id => "facebook" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :twitter, "Twitter", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_area :twitter, :class => "form-control", :id => "twitter" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :github, "Github", :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_area :github, :class => "form-control", :id => "github" %>
+        </div>
+      </div>
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-5">
@@ -48,14 +63,14 @@
   <div class="panel-body">
 
 
-  <% @user_institutions.each do |ui| %>
+  <% @user.user_institutions.each do |ui| %>
     <%= ui.institution.name %>
 
     <%= form_for ui, :html => {:class => "form-horizontal form-groups-bordered", :role => 'form'}  do |ui_form| %>
       <div class="form-group">
         <%= ui_form.label :institution_type, :class => "col-sm-3 control-label" %>
         <div class="col-sm-5">
-          <%#= ui_form.text_field :institution_type, :class => "form-control" %>
+          <%= ui_form.text_field :institution_type, :class => "form-control" %>
           <div class="radio">
             <label>
               <input type="radio" name="institution_type" id="optionsRadios1" value="school" <%= "checked" if ui.institution_type == "school" %> >School
@@ -168,7 +183,3 @@
 
   </div>
 </div>
-
-<% if params[:new_user] %>
-  <%= link_to "Skip", root_path %>
-<% end %>

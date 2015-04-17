@@ -1,20 +1,110 @@
-<h1><%= @user.name %>'s Profile</h1>
-<% if current_user == @user %>
-  <%= link_to "Edit Profile", edit_user_path(current_user) %>
-<% end %>
+    <div class="profile-env">
+      <header class="row">
+        
+        <div class="col-sm-2">
 
-<%= render 'connections/follow_form' %>
+        <% if @user.image %>
+          <a href="<%= user_path(current_user) %>" class="profile-picture">
+              <%= image_tag(@user.image, :class => 'img-responsive img-circle') %>
+          </a>
+        <% else %>
+          <a href="<%= user_path(@user) %>" class="profile-picture">
+              <%= image_tag('default.png', :class => 'img-responsive img-circle') %>
+          </a>
+        <% end %>
 
-<h4>Education</h4>
-<ul>
-  <% @user.institutions.where(:user_institutions => { :institution_type => "school" }).each do |institution| %>
-    <li><%= institution.name %></li>
-  <% end %>
-</ul>
+        </div>
+        
+        <div class="col-sm-7">
+          
+          <ul class="profile-info-sections">
+            <li>
+              <div class="profile-name">
+              <strong>
+                <a href="#"><%= @user.name %></a>
+              </strong>
+                <span><a href="#"><%= @user.latest_institution_name %></a></span>
+              </div>
+            </li>
+            
+            <li>
+              <div class="profile-stat">
+                <h3><%= @user.followed_by.count %></h3>
+                <span><%= link_to "followers", connections_path %></span>
+              </div>
+            </li>
+            
+            <li>
+              <div class="profile-stat">
+                <h3><%= @user.following.count %></h3>
+                <span><%= link_to "following", connections_path %></span>
+              </div>
+            </li>
+          </ul>
+          
+        </div>
+        
 
-<h4>Work History</h4>
-<ul>
-  <% @user.institutions.where(:user_institutions => { :institution_type => "work" }).each do |institution| %>
-    <li><%= institution.name %></li>
-  <% end %>
-</ul>
+        <div class="col-sm-3">
+        
+        <% unless current_user == @user  %>
+          <div class="profile-buttons">
+
+            <a href="#" class="btn btn-default">
+              <%= render 'connections/follow_form' %>
+            </a>
+            
+            <a href="#" class="btn btn-default">
+              <i class="entypo-mail"></i>
+            </a>
+
+          </div>
+        <% end %>
+        </div>
+      </header>
+      <section class="profile-info-tabs">
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-10">
+            <ul class="user-details">
+              <li>
+                <a href="#">
+                  <i class="entypo-location"></i>
+                  <%= @user.formatted_location %>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="entypo-suitcase"></i>
+                  <%= @user.latest_institution_name %>
+                </a>
+              </li>
+            </ul>
+            <!-- tabs for the profile links -->
+            <div class="panel-options">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#profile-info" data-toggle="tab">Profile</a></li>
+                <li><a href="#biography" data-toggle="tab">About</a></li>
+                <% if current_user == @user %>
+                <li><a href="#edit" data-toggle="tab">Edit Profile</a></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="profile-info">
+            <%= render 'users/profile_feed' %>
+          </div>
+          <div class="tab-pane" id="biography">
+            <%= render 'users/bio' %>
+          </div>
+          <% if current_user == @user %>
+            <div class="tab-pane" id="edit">
+              <%= render 'users/edit_user_information' %>
+            </div>
+           <% end %>
+        </div>
+      </div>
+    </div>

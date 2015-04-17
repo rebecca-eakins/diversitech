@@ -1,0 +1,28 @@
+<div class="member-entry">
+    <a href="extra-timeline.html" class="member-img">
+      <%= image_tag(user.feature_image, :class => 'img-rounded') %>
+      <i class="entypo-forward"></i>
+    </a>
+
+  <div class="member-details">
+    <h4>
+      <%= link_to user.name, user_path(user) %>
+    </h4>
+    
+    <!-- Details with Icons -->
+    <div class="row info-list">
+      
+      <div class="col-sm-4">
+        <i class="entypo-briefcase"></i>
+        <%= user.latest_institution_name %>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="col-sm-4">
+        <i class="entypo-location"></i>
+        <%= user.formatted_location %>
+      </div>          
+    </div>
+  </div>   
+</div>

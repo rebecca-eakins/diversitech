@@ -13,7 +13,7 @@ Goal.create([
 ])
 
 User.create([
-  {name: "Rebecca Shapkins", email: "reb@mailinator.com", password: "12345678", password_confirmation: "12345678", current_zip: '11216'}
+  {name: "Rebecca Shapkins", email: "reb@mailinator.com", password: "12345678", password_confirmation: "12345678"}
 ])
 
 Institution.create({name: "The Flatiron School"})
@@ -49,6 +49,27 @@ Connection.create([
   {follower_id: 1, target_id: 98, connection_status: "confirmed"},
   {follower_id: 100, target_id: 1, connection_status: "confirmed"},
   {follower_id: 100, target_id: 99, connection_status: "confirmed"}
+])
+
+Location.create([
+  {zip: "11216", city: "Brooklyn", state: "NY"},
+  {zip: "10007", city: "New York", state: "NY"},
+  {zip: "10014", city: "New York", state: "NY"},
+  {zip: "11222", city: "Brooklyn", state: "NY"},
+  {zip: "10011", city: "New York", state: "NY"},
+  {zip: "11217", city: "Brooklyn", state: "NY"},
+  {zip: "11215", city: "Brooklyn", state: "NY"},
+  {zip: "11231", city: "Brooklyn", state: "NY"},
+  {zip: "10001", city: "New York", state: "NY"},
+  {zip: "10003", city: "New York", state: "NY"},
+  {zip: "11211", city: "Brooklyn", state: "NY"},
+  {zip: "10002", city: "New York", state: "NY"},
+  {zip: "02203", city: "Boston", state: "MA"},
+  {zip: "07030", city: "New Jersey", state: "NJ"},
+  {zip: "30334", city: "Atlanta", state: "GA"},
+  {zip: "94132", city: "San Francisco", state: "CA"},
+  {zip: "92101", city: "San Diego", state: "CA"},
+  {zip: "98104", city: "Seattle", state: "WA"}
 ])
 
 

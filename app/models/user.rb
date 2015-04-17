@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  validates :current_zip, length: { is: 5 }, :allow_blank => true
+  belongs_to :location
 
   has_many :user_institutions
   has_many :institutions, through: :user_institutions
@@ -41,6 +41,31 @@ class User < ActiveRecord::Base
   end
 
   # INSTANCE METHODS
+
+  def latest_institution_name
+    inst_id = self.user_institutions.order("end_date DESC").first.institution_id
+    if !inst_id.nil?
+      Institution.find(inst_id).name
+    else
+      "Tech Community Member"
+    end
+  end
+
+  def formatted_location
+    if self.location
+      "#{self.location.city}, #{self.location.state}"
+    else
+      "Somewhere, USA"
+    end
+  end
+
+  def feature_image
+    if self.image == nil
+      "default.png"
+    else
+      self.image
+    end
+  end
 
   def first_name
     self.name.split(" ").first

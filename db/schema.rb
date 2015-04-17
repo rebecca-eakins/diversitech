@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409173210) do
+ActiveRecord::Schema.define(version: 20150416192058) do
 
   create_table "connections", force: :cascade do |t|
     t.integer  "follower_id"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 20150409173210) do
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "zip"
+    t.string   "city"
+    t.string   "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -113,10 +121,15 @@ ActiveRecord::Schema.define(version: 20150409173210) do
     t.string   "provider"
     t.string   "uid"
     t.string   "image"
-    t.string   "current_zip"
+    t.text     "bio"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "github"
+    t.integer  "location_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["location_id"], name: "index_users_on_location_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

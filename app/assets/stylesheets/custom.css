@@ -165,7 +165,6 @@
   display: none;
 }
 
-
 /*****************************************************************************/
 /*
 /* General Hacks
@@ -202,4 +201,20 @@ li.connection {
 
 }
   
+/*****************************************************************************/
+/*
+/* USER PROFILE PAGE
+/*
+/*****************************************************************************/
+
+#follow  {
+  background-color: rgb(240, 240, 241);
+  background-image: none;
+  border: none;
+}
+
+#follow:hover  {
+  background-color: rgb(240, 240, 241);
+  background-image: none;
+  border: none;
 }

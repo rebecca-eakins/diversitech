@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update]
   before_action :authenticate_user!
+  before_action :list_institutions, only: [:show, :edit]
+  before_action :find_user, only: [:show, :edit, :update]
 
 
   def show
@@ -8,14 +9,13 @@ class UsersController < ApplicationController
       @connection = Connection.find_by(follower_id: current_user, target_id: @user)
     else
       @connection = Connection.new
-    end
+    end    
   end
 
   def edit
     @inst_id = session[:institution]["id"] if session[:institution]
 
     if current_user.id == params[:id].to_i
-      @institutions_array = Institution.all.map { |institution| [institution.name, institution.id] }.sort
     else
       flash[:alert] = "You are not authorized to view that page, sorry!"
       redirect_to user_path(params[:id])
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(item_params)
+    @user.update(user_params)
     redirect_to :back
   end
 
@@ -34,8 +34,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def item_params
-    params.require(:user).permit(:email, :name, :image, :current_zip)
+  def user_params
+    params.require(:user).permit(:name, :bio, :facebook, :twitter, :github)
+  end
+
+  def list_institutions
+    @institutions_array = Institution.all.collect do |inst|
+       [inst.name, inst.id]
+      end.sort
   end
   
 end
