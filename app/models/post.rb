@@ -14,7 +14,8 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :topics
 
   def child_posts
-    Post.unscoped.where("parent_post_id == ?", self.id)
+    # Post.unscoped.where("parent_post_id == ?", self.id)
+    Post.where("parent_post_id == ?", self.id).reverse
   end
 
   private

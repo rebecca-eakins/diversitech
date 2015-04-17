@@ -7,7 +7,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<div class="tab-content">
+				<div class="tab-content main-post">
 					<%= render @post %>
 					<%= link_to "| Delete", post_path(@post), :method => :delete if @post.user_id == current_user.id %>
 					<%= link_to "Add Comment", "#", :class => "right new-comment-link", :"data-id" => @post.id %>
@@ -17,7 +17,7 @@
 		<%= render 'child_post_form', :post => Post.new, :parent_post_id => @post.id, :parent_post_goal => @post.goal_id %>
 		
 		<% if @post.child_posts.length != 0 %>
-				<% @post.child_posts.order("created_at ASC").each do |post| %>
+				<% @post.child_posts.each do |post| %>
 			<div class="panel panel-primary post-index subpost">
 				<%= render post %>
 			</div>
