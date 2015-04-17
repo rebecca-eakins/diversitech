@@ -64,7 +64,7 @@ end
 def make_posts
   5.times do 
     User.all.limit(6).each do |user|
-      user.posts.create!(content: Faker::Lorem.sentence(3))
+      user.posts.create!(content: Faker::Lorem.sentence(3), goal_id: rand(1..Goal.count))
     end
   end
 end
@@ -87,7 +87,6 @@ def associate_user_institution
   def tag_posts_with_topics
     Post.all.each do |post|
       post.topics.push(Topic.all.sample)
-      post.goal_id = Goal.all.sample.id
       post.save
     end
   end

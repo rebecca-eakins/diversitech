@@ -20,7 +20,7 @@ Institution.create({name: "The Flatiron School"})
 
 User.find(1).user_institutions.create({institution_type: "School", institution_id: 1, start_date: "2015-02-02", end_date: "2015-04-24"})
 
-User.find(1).posts.create({content: "This is my very first post as a new programmer. How do I best present my git repos?"})
+User.find(1).posts.create({content: "This is my very first post as a new programmer. How do I best present my git repos?", goal_id: 1})
 
 Topic.create([
   {name: "career"},
