@@ -1,5 +1,9 @@
 <% if @post.user_id == current_user.id %>
-	<%= render 'post_form' %>
+	<% if @post.parent_post_id.nil? %>
+		<%= render 'post_form' %>
+	<% else %>
+		<%= render 'child_post_form', :post => @post %>
+	<% end %>
 <% else %>
 	<h4>You are not authorized to view this page, sorry!</h4>
 <% end %>

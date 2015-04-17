@@ -1,4 +1,4 @@
-<div class="panel panel-primary hide" data-collapsed="0" id="new-comment-for-<%= parent_post_id %>">
+<div class="panel panel-primary<%= " hide" if !post.persisted? %>" data-collapsed="0" id="comment-for-<%= post.parent_post_id.nil? ? parent_post_id : post.parent_post_id %>">  <!-- REFACTOR THIS -->
   
   <div class="panel-body">
 		<div class="tab-content">
@@ -9,8 +9,8 @@
       </div>
 
 			<%= f.hidden_field :user_id, :value => current_user.id %>
-			<%= f.hidden_field :parent_post_id, :value => parent_post_id %>
-			<%= f.hidden_field :goal_id, :value => parent_post_goal %>
+			<%= f.hidden_field :parent_post_id, :value => parent_post_id if post.parent_post_id.nil? %> <!-- REFACTOR THIS -->
+			<%= f.hidden_field :goal_id, :value => parent_post_goal if post.parent_post_id.nil? %> <!-- REFACTOR THIS -->
 
 		<% end %>
 	</div>
