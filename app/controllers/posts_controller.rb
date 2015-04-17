@@ -45,7 +45,11 @@ class PostsController < ApplicationController
       @post.topics << Topic.find(topic) unless @post.topics.include? Topic.find(topic)
     end
     @post.topics.create(name: params[:post][:topic][:name]) if params[:post][:topic][:name] != ""
-    redirect_to posts_path
+    if @post.parent_post_id.nil?
+      redirect_to posts_path
+    else
+      redirect_to posts_path(@post.parent_post_id)
+    end
   end
 
   def destroy
