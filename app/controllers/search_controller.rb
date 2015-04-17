@@ -12,7 +12,6 @@ class SearchController < ApplicationController
 
   def show_users
     search_users
-    binding.pry
     respond_to do |f|
       f.js {}
       f.html {}

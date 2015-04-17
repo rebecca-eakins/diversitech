@@ -1,0 +1,10 @@
+
+
+$("li.active").removeClass("active")
+
+$("#search-tab").removeClass("hidden").addClass("active")
+
+$("div.active").removeClass("active")
+$("#search").addClass("active")
+
+$("div#search-results").replaceWith("<%= j render partial: 'search/show_users' %>")
