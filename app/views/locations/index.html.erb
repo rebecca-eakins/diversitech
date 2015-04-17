@@ -1,3 +1,11 @@
+<h3>All Cities</h3>
+
+
 <% @locations.each do |location| %>
-  <p><%= location.city %></p>
+  <h4><%= location.city %></h4>
+  <ul>
+  <% Location.find_by_city(location.city).users_in_same_city.each do |user| %>
+    <li><%= link_to user.name, user_path(user) %></li>
+    <% end %>
+  </ul>
 <% end %>
