@@ -4,5 +4,5 @@
 	<h4><%= post.content %></h4>
 <% end %>
 
-Posted by <%= link_to post.user.name, post.user %> on <%= post.created_at.strftime("%m/%d/%y") %>
+Posted by <%= link_to post.user.name, post.user %> on <%= post.created_at.strftime("%m/%d/%y") %> at <%= post.created_at.strftime("%l:%M %p") %>
 <%= link_to "Edit", edit_post_path(post) if post.user_id == current_user.id %>

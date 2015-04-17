@@ -17,7 +17,7 @@
 		<%= render 'child_post_form', :post => Post.new, :parent_post_id => @post.id, :parent_post_goal => @post.goal_id %>
 		
 		<% if @post.child_posts.length != 0 %>
-				<% @post.child_posts.each do |post| %>
+				<% @post.child_posts.order("created_at ASC").each do |post| %>
 			<div class="panel panel-primary post-index subpost">
 				<%= render post %>
 			</div>
